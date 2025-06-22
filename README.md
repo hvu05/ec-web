@@ -135,17 +135,17 @@ e-commerce-web/
 
 ## Chi tiết công việc
 
-# Thứ 4 (18/06)
+### Thứ 4 (18/06)
 Install các package, dựng layout chung, viết Hooks Fetch API
 
-# Thứ 5 (19/06)
+### Thứ 5 (19/06)
 Làm Menu, tạo trang đăng nhập, đăng ký, tạo Fake API với json-server
 
-# Thứ 6 (20/06)
+### Thứ 6 (20/06)
 - Tạo trang chủ (Home): ProductList; dựng giao diện giỏ hàng; tạo Redux đếm số lượng trong giỏ hàng
 - FIX: fix thêm tính năng ẩn mật khẩu ở trang đăng nhập
 
-# Thứ 7 (21/06)
+### Thứ 7 (21/06)
 - Tạo giao diện page giỏ hàng
 - Cài đặt để chạy BackEnd (Docker, MySQL)
 - Hoàn thiện tính năng đăng ký, đăng nhập
