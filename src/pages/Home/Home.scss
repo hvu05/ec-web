@@ -1,0 +1,67 @@
+.sanpham{
+    color: #55596C;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px 20px;
+}
+.product__list{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    gap: 20px;
+    justify-content: center;
+}
+.product__item{
+    width: 20%;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    // border: solid 2px #888;
+    border-radius: 10px;
+    box-shadow: 0 10px 10px rgba(#887, 0.2);
+    transition: transform 0.3s ease;
+    position: relative;
+    height: 450px;
+    max-height: 450px;
+    &:hover{
+        transform: scale(1.05);
+    }
+    .product__image img{
+        display: flex;
+        // width: 30%;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+        border-radius: 10px;
+        margin: 0 auto;
+        padding-top: 10px;
+    }
+    .product__name {
+        display: flex;
+        justify-content: center;
+        font-weight: bold;
+        padding: 10px 10px;
+        font-size: 20px;
+        max-height: 30px;
+    }
+}
+.product__price{
+    text-align: left;
+    margin: 30px 30px;
+}
+.cart {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #ff4d4f;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 5px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+
+/* hiện khi hover */
+.product__item:hover .cart {
+    opacity: 1;
+}

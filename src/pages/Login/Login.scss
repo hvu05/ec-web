@@ -1,0 +1,82 @@
+@import "../../style/variables.scss";
+
+.login-wrapper {
+  background: linear-gradient(135deg, $primary-color, #add8e6);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login {
+  // position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: 450px;
+  height: 400px;
+  top: 50%;
+  left: 50%;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+  &__dangnhap {
+    color: $primary-color;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  &__name {
+    display: flex;
+    padding-top: 30px;
+    align-items: center;
+    input {
+      height: 50px;
+      width: 300px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: none;
+      padding: 0 40px;
+      font-size: 15px;
+      border: solid 1px #dbdbdb;
+      font-family: 'Courier New', Courier, monospace;
+    }
+  }
+  &__password {
+    .ant-input {
+      height: 50px;
+      width: 380px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: none;
+      padding: 0 40px;
+      font-size: 15px;
+      border: solid 1px #dbdbdb;
+      &::placeholder{
+        font-family: 'Courier New', Courier, monospace;
+        color: #757575;
+      }
+    }
+  }
+  &__submit {
+    button {
+      height: 50px;
+      width: 130px;
+      background-color: $primary-color;
+      border-radius: 10px;
+      margin: 30px 0;
+      color: white;
+      font-weight: bold;
+      font-size: 15px;
+      border: none;
+      cursor: pointer;
+    }
+  }
+  &__signin {
+    font-style: italic;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 250px;
+  }
+}

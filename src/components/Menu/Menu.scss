@@ -1,0 +1,37 @@
+@import "../../style/variables";
+
+.menu{
+    display: flex;
+    background-color: $primary-color;
+    height: 90px;
+    align-items: center;
+    // justify-content: center;
+    &__logo{
+        display: flex;
+        font-size: 30px;
+        justify-content: center;
+        color: $text-color;
+
+    }
+    &__search{
+        // margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        input{
+            width: 400px;
+            height: 50px;
+            border-radius: 40px;
+            border: none;
+            padding-left: 20px;
+        }
+    }
+    &__cart,
+    &__account{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        color: $text-color;
+        font-size: 20px;
+    }
+}

@@ -1,70 +1,152 @@
-# Getting Started with Create React App
+# 🛒 E-Commerce Website - Tính năng chính
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Dưới đây là các chức năng chính của website bán hàng, được chia thành hai luồng người dùng chính: **Người dùng (User)** và **Quản trị viên (Admin)**.
 
-## Available Scripts
+---
+# 🛍️ EC-WEB – Dự án Website Thương Mại Điện Tử
 
-In the project directory, you can run:
+Đây là frontend (ReactJS) của một hệ thống thương mại điện tử đơn giản, sử dụng React, Redux Toolkit, Axios, SCSS và Ant Design. Backend có thể chạy với Spring Boot và MySQL.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🚀 Tính năng chính
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Đăng nhập / Đăng ký người dùng
+- Danh sách sản phẩm, chi tiết sản phẩm
+- Thêm sản phẩm vào giỏ hàng
+- Giao diện đẹp mắt với Ant Design + SCSS
+- Kết nối API thông qua Axios
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 📦 Công nghệ sử dụng
 
-### `npm run build`
+- React 18
+- Redux Toolkit
+- React Router v7
+- Axios
+- Ant Design 5
+- SCSS (SASS)
+- React Loading Skeleton
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## ⚙️ Yêu cầu cài đặt
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Node.js >= 18.x
+- npm >= 9.x
+- (Tuỳ chọn) Docker nếu dùng backend với MySQL
+(Nếu chưa có Nodejs thì cài Nodejs và npm)
+---
 
-### `npm run eject`
+## 📥 Cài đặt dự án
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+# Clone dự án
+git clone 
+cd ec-web
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Cài đặt thư viện
+npm install
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Chạy chương trình
+npm start
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 👤 Người dùng (User Flow)
 
-## Learn More
+### 1. Trang chủ
+- Hiển thị danh sách sản phẩm nổi bật, banner quảng cáo.
+- Có thể click vào sản phẩm để xem chi tiết.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 2. Xem chi tiết sản phẩm
+- Hiển thị thông tin chi tiết sản phẩm: hình ảnh, mô tả, giá, tình trạng còn hàng.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 3. Tìm kiếm và lọc sản phẩm
+- Tìm kiếm theo tên sản phẩm.
+- Lọc theo danh mục, giá, thương hiệu...
 
-### Code Splitting
+### 4. Thêm vào giỏ hàng
+- Chọn số lượng sản phẩm và thêm vào giỏ.
+- Giỏ hàng hiển thị các mặt hàng đã chọn.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 5. Thanh toán (Checkout)
+- Nhập thông tin giao hàng, chọn phương thức thanh toán.
+- Xác nhận đơn hàng.
 
-### Analyzing the Bundle Size
+### 6. Đăng nhập / Đăng ký                                {{{XONG}}}
+- Người dùng có thể tạo tài khoản hoặc đăng nhập.
+- Hỗ trợ xác thực tài khoản.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 7. Theo dõi đơn hàng
+- Xem lịch sử đơn hàng, trạng thái vận chuyển.
 
-### Making a Progressive Web App
+### 8. Hồ sơ người dùng
+- Cập nhật thông tin cá nhân, mật khẩu.
+- Quản lý địa chỉ giao hàng.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## 🛠️ Quản trị viên (Admin Flow)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### 1. Quản lý sản phẩm
+- Thêm, sửa, xoá sản phẩm.
+- Quản lý hình ảnh, mô tả, giá và danh mục.
 
-### Deployment
+### 2. Quản lý đơn hàng
+- Xem danh sách đơn hàng.
+- Cập nhật trạng thái đơn hàng (đang xử lý, đã giao, huỷ...).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### 3. Quản lý người dùng
+- Xem danh sách người dùng.
+- Phân quyền (user/admin), khoá tài khoản nếu cần.
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 4. Cấu trúc thư mục của dự án
+```
+e-commerce-web/
+├── public/
+│   ├── index.html
+│   └── favicon.ico
+│
+├── src/
+│   ├── assets/               # Hình ảnh, icon, font, v.v.
+│   ├── components/           # Các component tái sử dụng (Button, Header, Footer)
+│   ├── layouts/              # Layouts chính (MainLayout, AdminLayout)
+│   ├── pages/                # Trang chính (Home, ProductDetail, Cart, Checkout)
+│   ├── routes/               # Định tuyến cho toàn bộ app
+│   ├── services/             # API calls (axios, fetch)
+│   ├── redux/                # State management (slice, store)
+│   │   ├── slices/
+│   │   └── store.js
+│   ├── utils/                # Hàm tiện ích (format date, validate, v.v.)
+│   ├── constants/            # Các hằng số dùng chung (routes, category types,...)
+│   ├── App.js
+│   ├── index.js
+│   └── styles/               # SCSS hoặc CSS modules
+│       └── global.scss
+│
+├── .env                     
+├── .gitignore
+├── package.json
+├── README.md
+```
+
+## Chi tiết công việc
+
+# Thứ 4 (18/06)
+Install các package, dựng layout chung, viết Hooks Fetch API
+
+# Thứ 5 (19/06)
+Làm Menu, tạo trang đăng nhập, đăng ký, tạo Fake API với json-server
+
+# Thứ 6 (20/06)
+- Tạo trang chủ (Home): ProductList; dựng giao diện giỏ hàng; tạo Redux đếm số lượng trong giỏ hàng
+- FIX: fix thêm tính năng ẩn mật khẩu ở trang đăng nhập
+
+# Thứ 7 (21/06)
+- Tạo giao diện page giỏ hàng
+- Cài đặt để chạy BackEnd (Docker, MySQL)
+- Hoàn thiện tính năng đăng ký, đăng nhập
+- Push dự án bên FE lên Github
