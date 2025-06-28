@@ -1,9 +1,18 @@
+.sanphamnoibat{
+    color: #55596C;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px 20px;
+    margin-top: 100px;
+}
 .sanpham{
     color: #55596C;
     font-size: 25px;
     font-weight: bold;
     text-align: center;
     padding: 20px 20px;
+    // margin-top: 100px;
 }
 .product__list{
     display: flex;
@@ -26,9 +35,12 @@
     &:hover{
         transform: scale(1.05);
     }
+    img{
+        max-width: 300px;
+        max-height: 400px;
+    }
     .product__image img{
         display: flex;
-        // width: 30%;
         aspect-ratio: 4/3;
         object-fit: cover;
         border-radius: 10px;

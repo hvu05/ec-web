@@ -1,0 +1,14 @@
+@import '../../style/variables.scss';
+
+.buttonBack{
+    button{
+        background-color: $primary-color;
+        width: 60px;
+        height: 30px;
+        border-radius: 5px;
+        color: white;
+        border: none;
+        margin-left: 10px;
+        cursor: pointer;
+    }
+}

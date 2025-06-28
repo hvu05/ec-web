@@ -1,10 +1,13 @@
+.space{
+  margin-top: 100px;
+}
 .cart-table {
   width: 80%;
   border-collapse: collapse;
   font-family: sans-serif;
   text-align: center;
   margin: 0 auto;
-  margin-top: 100px;
+  // margin-top: 100px;
 }
 
 .cart-table th,
@@ -35,6 +38,9 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
+  input{
+    width: 35px;
+  }
 }
 
 .qty-btn {

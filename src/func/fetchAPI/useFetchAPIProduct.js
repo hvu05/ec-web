@@ -14,6 +14,7 @@ function useFetchAPIProduct() {
             })
             .catch(err => {
                 console.log("Loi khi loading san pham")
+                console.log(err)
                 setLoading(false)
             })
     }, [])

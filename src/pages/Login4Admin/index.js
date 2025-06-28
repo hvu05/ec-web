@@ -1,71 +1,59 @@
-// File Login.js
+// File loginadmin4Admin.js
 // import React from 'react'
 import { useState } from "react"
 import { URL_WEB } from "../../constants"
 import axios from 'axios'
-import './Login.scss'
+import './Login4Admin.scss'
 import { useNavigate } from "react-router-dom"
-// import { EyeOutlined, EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons'
 import { message } from 'antd'
 import {Input, Space } from 'antd'
 
-function Login() {
+function Login4Admin() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-//   const [passwordVisible, setPasswordVisible] = React.useState(false);
     const navigate = useNavigate()
 
     const HandleSubmit = async (e) => {
         e.preventDefault()
-        // console.log(e)
-        // console.log(username)
-        // console.log(password)
-
         try {
             // POST tới Backend
             const response = await axios.post(`${URL_WEB}/auth/login`, {
                 username: username,
                 password: password,
-                role: 'USER'
+                role: 'ADMIN'
             })
-            // xử lí khi đăng nhập thành công
-            // console.log('Đăng nhập thành công', response.data)
             message.success('Đăng nhập thành công')
             localStorage.setItem('token', response.data.result.accessToken)
-            // console.log('Data.token:', response.data.result.accessToken)
-            navigate('/home')
-
+            navigate('/admin-home')
         }
         catch {
             // console.log('Đăng nhập thất bại')
             message.error('Đăng nhập thất bại')
         }
     }
-    const HandleSignin = () => {
-        navigate('/signin')
+    const HandleUser = () => {
+        navigate('/')
     }
     return (
         <>
-            <div className="login-wrapper">
-                <form onSubmit={HandleSubmit} className="login">
-                    <div className="login__dangnhap">Đăng nhập</div>
-                    <div className="login__name">
+            <div className="loginadmin-wrapper">
+                <form onSubmit={HandleSubmit} className="loginadmin">
+                    <div className="loginadmin__dangnhap">Đăng nhập cho Admin</div>
+                    <div className="loginadmin__name">
                         <input placeholder="Tên đăng nhập" type="text" onChange={(e) => setUsername(e.target.value)} />
                     </div>
-                    <div className="login__password">
+                    <div className="loginadmin__password">
                         <Space >
                             <Input.Password className='ant-input' placeholder="Nhập mật khẩu" onChange={(e) => setPassword(e.target.value)}/>
                         </Space>
                     </div>
-                    <div className="login__signin" onClick={HandleSignin}>
-                        Bạn chưa có tài khoản?
-                    </div>
-                    <div className="login__submit">
-                        <button type="submit">Login</button>
+                    <div className="loginadmin__submit">
+                        <button type="submit">Đăng nhập</button>
+                        <button type="submit" style={{marginLeft: 20 }} onClick={HandleUser}>Người dùng</button>
                     </div>
                 </form>
             </div>
         </>
     )
 }
-export default Login
+export default Login4Admin

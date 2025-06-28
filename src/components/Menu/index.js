@@ -15,11 +15,22 @@ function MenuProduct() {
     const HandleClickCart = () => {
         navigate("/cart")
     }
+    const HandleLogout = () => {
+        navigate('/')
+    }
+    const HandleClickLogo = () => {
+        navigate('/home')
+    }
     return (
         <>
             <Row className='menu'>
-                <Col span={8}>
-                    <div className='menu__logo'>Logo</div>
+                <Col span={4} onClick={HandleLogout}>
+                    <i className="fa-solid fa-right-from-bracket menu__logout"></i>
+                </Col>
+                <Col span={4}>
+                    <div className='menu__logo' onClick={HandleClickLogo}>
+                        <img src='/logo.png' alt='logo' />
+                    </div>
                 </Col>
                 <Col span={8}>
                     <div className='menu__search'>
@@ -35,9 +46,9 @@ function MenuProduct() {
                 <Col span={3}>
                     <div className='menu__account'>
                         <i className="fa-solid fa-circle-user"></i>
-                        <div className='menu__cart__content'>{token ? "Đã đăng nhập": "Chưa đăng nhập"}</div>
+                        <div className='menu__cart__content'>{token ? "Đã đăng nhập" : "Chưa đăng nhập"}</div>
                     </div>
-                </Col> 
+                </Col>
             </Row>
         </>
     )

@@ -150,3 +150,11 @@ Làm Menu, tạo trang đăng nhập, đăng ký, tạo Fake API với json-serv
 - Cài đặt để chạy BackEnd (Docker, MySQL)
 - Hoàn thiện tính năng đăng ký, đăng nhập
 - Push dự án bên FE lên Github
+
+### Thứ 4 (25/06)
+- Hoàn thành trang cho từng sản phẩm
+- Chức năng thêm vào giỏ hàng
+
+### Thứ 5 (26/06)
+- Chức năng xóa sản phẩm của giỏ hàng
+- Phân quyền đăng nhập ADMIN
