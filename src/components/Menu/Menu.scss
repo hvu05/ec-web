@@ -1,37 +1,55 @@
 @import "../../style/variables";
 
-.menu{
+.menu {
+  display: flex;
+  background-color: $primary-color;
+  height: 90px;
+  align-items: center;
+  // justify-content: center;
+  position: fixed; // Giữ cố định
+  top: 0; // Gắn ở đầu trang
+  left: 0;
+  width: 100%; // Chiều rộng toàn bộ trang
+  z-index: 1000; // Đảm bảo nằm trên các thành phần khác
+  //   background-color: white; // Nên có nền trắng để không bị "xuyên suốt"
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); // Đổ bóng nhẹ để phân tách
+  &__logout {
+    color: white;
+    font-size: 25px;
+    margin-left: 100px;
+    cursor: pointer;
+  }
+  &__logo {
     display: flex;
-    background-color: $primary-color;
-    height: 90px;
+    font-size: 30px;
+    justify-content: center;
+    color: $text-color;
+    img {
+      max-width: 130px;
+      border-radius: 20px;
+    }
+    cursor: pointer;
+  }
+  &__search {
+    // margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    input {
+      width: 400px;
+      height: 50px;
+      border-radius: 40px;
+      border: none;
+      padding-left: 20px;
+    }
+  }
+  &__cart,
+  &__account {
+    display: flex;
+    justify-content: center;
     align-items: center;
-    // justify-content: center;
-    &__logo{
-        display: flex;
-        font-size: 30px;
-        justify-content: center;
-        color: $text-color;
-
-    }
-    &__search{
-        // margin: 0 auto;
-        display: flex;
-        justify-content: center;
-        input{
-            width: 400px;
-            height: 50px;
-            border-radius: 40px;
-            border: none;
-            padding-left: 20px;
-        }
-    }
-    &__cart,
-    &__account{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
-        color: $text-color;
-        font-size: 20px;
-    }
+    gap: 5px;
+    color: $text-color;
+    font-size: 20px;
+    cursor: pointer;
+  }
 }

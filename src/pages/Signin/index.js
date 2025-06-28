@@ -1,3 +1,4 @@
+// File Signin.js
 import './Signin.scss'
 import { useState } from "react"
 import { URL_WEB } from "../../constants"
@@ -16,13 +17,13 @@ function Signin() {
 
     const HandleSubmit = async (e) => {
         e.preventDefault() // Ngắn chặn auto load lại trang khi Click button
-        console.log(e)
-        console.log(username)
-        console.log(dob)
+        // console.log(e)
+        // console.log(username)
+        // console.log(dob)
 
         try {
             // POST tới Backend
-            const response = await axios.post(`${URL_WEB}/user`, {
+            await axios.post(`${URL_WEB}/user`, {
                 username: username,
                 password: password,
                 firstName: firstName,
@@ -30,12 +31,12 @@ function Signin() {
                 dob: dob
             })
             // xử lí khi đăng nhập thành công
-            console.log('Đăng ký thành công', response.data)
+            // console.log('Đăng ký thành công', response.data)
             message.success('Đăng ký tài khoản thành công')
             navigate('/') // Khi đăng kí thành công thì chuyển đến trang đăng nhập
         }
         catch {
-            console.log('Đăng ký thất bại')
+            // console.log('Đăng ký thất bại')
             message.error('Đăng ký thất bại')
         }
     }
