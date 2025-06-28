@@ -1,0 +1,256 @@
+@import '../../style/variables.scss';
+
+.category-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.category-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  
+  h2 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  
+  p {
+    font-size: 1.1rem;
+    color: #7f8c8d;
+    margin: 0;
+  }
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  
+  .loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    color: #7f8c8d;
+    font-size: 1.1rem;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.category-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
+  position: relative;
+  overflow: hidden;
+  
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    border-color: #3498db;
+  }
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,  $primary-color, #add8e6);
+  }
+}
+
+.category-icon {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  
+  .icon {
+    font-size: 3rem;
+    display: inline-block;
+    padding: 1rem;
+    background: linear-gradient(135deg,  $primary-color, #add8e6 100%);
+    border-radius: 50%;
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  }
+}
+
+.category-content {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.category-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.category-description {
+  color: #7f8c8d;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  min-height: 2.5rem;
+}
+
+.category-id {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  background: #f8f9fa;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  margin: 0 auto;
+  width: fit-content;
+  
+  .id-label {
+    font-size: 0.85rem;
+    color: #6c757d;
+    font-weight: 500;
+  }
+  
+  .id-value {
+    font-size: 0.9rem;
+    color: #495057;
+    font-weight: 600;
+    background: #e9ecef;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+  }
+}
+
+.category-actions {
+  text-align: center;
+  display: flex;
+  gap: 10px;
+  margin-left: 30px;
+  .view-btn, .edit-btn, .delete-btn {
+    // background: linear-gradient(135deg,  $primary-color, #add8e6 100%);
+    background: $primary-color;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    }
+    
+    &:active {
+      transform: translateY(0);
+    }
+  }
+  .edit-btn{
+    background: #6c757d;
+  }
+  .delete-btn{
+    background: #E81123;
+  }
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #7f8c8d;
+  
+  .empty-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+  }
+  
+  p {
+    font-size: 1rem;
+    margin: 0;
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .category-container {
+    padding: 1rem;
+  }
+  
+  .category-header {
+    h2 {
+      font-size: 2rem;
+    }
+  }
+  
+  .category-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .category-card {
+    padding: 1.5rem;
+  }
+  
+  .category-icon .icon {
+    font-size: 2.5rem;
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .category-header {
+    h2 {
+      font-size: 1.75rem;
+    }
+    
+    p {
+      font-size: 1rem;
+    }
+  }
+  
+  .category-card {
+    padding: 1.25rem;
+  }
+  
+  .category-name {
+    font-size: 1.25rem;
+  }
+}

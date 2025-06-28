@@ -12,7 +12,7 @@ function Cart() {
     const { cart, loading } = useFetchAPIcart()
     const [cartList, setCartList] = useState(null)
     // const [total, setTotal] = useState(0)
-    const [num, setNum] = useState(0)
+    // const [num, setNum] = useState(0)
     const token = localStorage.getItem('token')
     console.log(cart.result)
     useEffect(() => {

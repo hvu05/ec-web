@@ -3,6 +3,7 @@ import { useState } from "react"
 import { URL_WEB } from "../../constants"
 import { useNavigate } from "react-router-dom"
 import { message } from "antd"
+import ListCategory from "../../components/ListCategory"
 
 function Admin() {
     const [showform, setShowform] = useState(false)
@@ -16,7 +17,7 @@ function Admin() {
     }
 
     const HandleAddProduct = async (e) => {
-        e.preventDefault()
+        // e.preventDefault()
 
         if (!token) {
             console.log('Error: No token found')
@@ -97,6 +98,9 @@ function Admin() {
                     </button>
                 </form>
             )}
+            <div>
+                <ListCategory />
+            </div>
         </>
     )
 }
