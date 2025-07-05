@@ -22,13 +22,15 @@ function Login4Admin() {
                 password: password,
                 role: 'ADMIN'
             })
-            message.success('Đăng nhập thành công')
-            localStorage.setItem('token', response.data.result.accessToken)
+            message.success('Đăng nhập thành côngggggg')
+            console.log('Token when login', response.data.data.accessToken)
+            // console.log('ROLE:', response)
+            localStorage.setItem('token', response.data.data.accessToken)
             navigate('/admin-home')
         }
-        catch {
-            // console.log('Đăng nhập thất bại')
-            message.error('Đăng nhập thất bại')
+        catch(e) {
+            console.log('Đăng nhập thất bại', e)
+            message.error('Đăng nhập thất bạiiiiiii')
         }
     }
     const HandleUser = () => {
@@ -49,7 +51,7 @@ function Login4Admin() {
                     </div>
                     <div className="loginadmin__submit">
                         <button type="submit">Đăng nhập</button>
-                        <button type="submit" style={{marginLeft: 20 }} onClick={HandleUser}>Người dùng</button>
+                        <button type="button" style={{marginLeft: 20 }} onClick={HandleUser}>Người dùng</button>
                     </div>
                 </form>
             </div>

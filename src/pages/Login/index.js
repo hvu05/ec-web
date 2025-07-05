@@ -31,7 +31,8 @@ function Login() {
             // xử lí khi đăng nhập thành công
             // console.log('Đăng nhập thành công', response.data)
             message.success('Đăng nhập thành công')
-            localStorage.setItem('token', response.data.result.accessToken)
+            console.log("In login user",response)
+            localStorage.setItem('token', response.data.data.accessToken)
             // console.log('Data.token:', response.data.result.accessToken)
             navigate('/home')
 

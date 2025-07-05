@@ -1,5 +1,7 @@
+import AddDetail from "../components/AddDetail"
 import Private from "../components/Allroutes/Private"
 import ProductDetail from "../components/ProductDetail"
+import ViewCategory from "../components/ViewCategory"
 import LayoutDefault from "../layouts/LayoutDefault"
 import Admin from "../pages/Admin"
 import Cart from "../pages/Cart"
@@ -40,6 +42,14 @@ export const routes = [
             {
                 path: 'admin',
                 element: <Login4Admin />
+            },
+            {
+                path: 'admin-home/:name',
+                element: <ViewCategory />
+            },
+              {
+                path: 'admin-home/:name/:id',
+                element: <AddDetail />
             },
             {
                 element: <Private />,
