@@ -1,0 +1,84 @@
+/* src/components/EditCategory/EditCategory.scss */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: #fff;
+  padding: 32px 24px 24px 24px;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  min-width: 350px;
+  max-width: 90vw;
+  position: relative;
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.modal button.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.modal button.close-btn:hover {
+  color: #e74c3c;
+}
+
+.modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modal label {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.modal input {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border 0.2s;
+}
+.modal input:focus {
+  border: 1.5px solid #007bff;
+  outline: none;
+}
+
+.modal button[type="submit"] {
+  margin-top: 8px;
+  padding: 10px 0;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.modal button[type="submit"]:hover {
+  background: #0056b3;
+}

@@ -4,10 +4,11 @@ import { URL_WEB } from "../../constants"
 import { useNavigate } from "react-router-dom"
 import { message } from "antd"
 import ListCategory from "../../components/ListCategory"
+import './Admin.scss'
 
 function Admin() {
     const [showform, setShowform] = useState(false)
-    const [dataForm, setDataForm] = useState({ name: '', description: '' })
+    const [dataForm, setDataForm] = useState({ name: '', description: '', url: '' })
     const [loading, setLoading] = useState(false)
     const token = localStorage.getItem('token')
     const navigate = useNavigate()
@@ -30,7 +31,8 @@ function Admin() {
         try {
             const res = await axios.post(`${URL_WEB}/category`, {
                 name: dataForm.name.toString(),  // Use form data instead of hardcoded values
-                description: dataForm.description.toString()
+                description: dataForm.description.toString(),
+                urlImage: dataForm.url.toString()
             }, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -71,9 +73,9 @@ function Admin() {
 
     return (
         <>
-            <button onClick={LoginAdmin}>Log in ADMIN</button>
-            <button onClick={() => setShowform(true)}>Add Product</button>
-            <button onClick={() => setShowform(false)}>Hide Form</button>
+            {/* <button onClick={LoginAdmin}>Log in ADMIN</button> */}
+            <button onClick={() => setShowform(true)} className="accent">Add Product</button>
+            {/* <button onClick={() => setShowform(false)}>Hide Form</button> */}
             
             {showform && (
                 <form onSubmit={HandleAddProduct}>
@@ -93,6 +95,14 @@ function Admin() {
                         onChange={HandleChange}
                         required
                     />
+                    {/* <input
+                        name="url"
+                        type="text"  // Use "text" instead of "string"
+                        placeholder="Input url"
+                        value={dataForm.url}
+                        onChange={HandleChange}
+                        required
+                    /> */}
                     <button type="submit" disabled={loading}>
                         {loading ? 'Submitting...' : 'Submit'}
                     </button>
