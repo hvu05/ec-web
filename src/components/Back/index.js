@@ -2,16 +2,12 @@ import { useNavigate } from "react-router-dom"
 import './Back.scss'
 
 function BackButton() {
-    const navigate = useNavigate()
-    const HandleBack = () => {
-        navigate('/home')
-    }
+    const navigate = useNavigate();
     return (
-        <>
-            <div className="buttonBack">
-                <button onClick={HandleBack}>Back</button>
-            </div>
-        </>
-    )
+        <button className="buttonBack" onClick={() => navigate('/home')}>
+            Back
+        </button>
+    );
 }
+
 export default BackButton

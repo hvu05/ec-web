@@ -97,25 +97,22 @@ function ViewCategory() {
     const HandleGetProductById = async () => {
         try {
             const response = await axios.get(`${URL_WEB}/product`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                },
-                params: {
-
-                }
+                headers: {Authorization: `Bearer ${token}`},
+                params: {}
             })
-            console.log('Res at HandleGetProductById', response.data.data)
+            // console.log('Res at HandleGetProductById', response.data.data)
             const listProduct = response.data.data
             const filteredProducts = listProduct.filter(product =>
                 Array.isArray(product.category) && product.category.includes(name)
-            )
-            console.log('da loc', filteredProducts)
+            )   
+            // console.log('da loc', filteredProducts)
             setListProd(filteredProducts)
         } catch (err) {
             console.log('Error at HandleGetProductById', err)
         }
     }
     const HandleAddDetail = (item) => {
+        console.log('item in view cat', item)
         navigate(`/admin-home/${item.name}/${item.id}`, {
             state: {
                 id: item.id
@@ -124,101 +121,146 @@ function ViewCategory() {
     }
     return (
         <div className="view-category">
-            <h2 className="vc-title">{nameS}</h2>
-            {1 ? (
-                <div className="vc-info-section">
-                    <div className="vc-info-header">
-                        <h3 className="vc-info-title">Thông tin Danh mục</h3>
-                        <button className="vc-btn vc-btn-back" onClick={() => navigate(-1)}>✕</button>
+            <div className="view-category__container">
+                <h1 className="view-category__title">{nameS}</h1>
+                
+                <div className="view-category__info-section">
+                    <div className="view-category__info-header">
+                        <h3 className="info-title">Category Information</h3>
+                        <button className="close-btn" onClick={() => navigate(-1)}>✕</button>
                     </div>
 
-                    <div className="vc-info-content">
-                        <div className="vc-info-text">
-                            <p><b>ID:</b> {idS}</p>
-                            <p><b>Name:</b> {nameS}</p>
-                            <p><b>Description:</b> {descriptionS}</p>
+                    <div className="view-category__info-content">
+                        <div className="info-text">
+                            <p><strong>ID:</strong> {idS}</p>
+                            <p><strong>Name:</strong> {nameS}</p>
+                            <p><strong>Description:</strong> {descriptionS}</p>
                         </div>
 
                         {urlImage && (
-                            <img src={urlImageS} alt="Category" className="vc-image" />
+                            <img src={urlImageS} alt="Category" className="category-image" />
                         )}
                     </div>
 
-                    <div className="vc-info-actions">
-                        <button className="vc-btn vc-btn-accent" onClick={() => setShowAdd(true)}>+ Thêm sản phẩm</button>
-                        <button className="vc-btn vc-btn-primary" onClick={HandleGetProductById}>Xem sản phẩm</button>
-                        <button className="vc-btn vc-btn-delete" onClick={HandleDeleteProduct}>Xóa sản phẩm</button>
+                    <div className="view-category__info-actions">
+                        <button className="view-category__btn view-category__btn--accent" onClick={() => setShowAdd(true)}>
+                            + Add Product
+                        </button>
+                        <button className="view-category__btn view-category__btn--primary" onClick={HandleGetProductById}>
+                            View Products
+                        </button>
+                        <button className="view-category__btn view-category__btn--danger" onClick={HandleDeleteProduct}>
+                            Delete Category
+                        </button>
                     </div>
                 </div>
-            ) : (
-                <p>Loading...</p>
-            )}
 
-            <div className="vc-product-list">
-                {listProd && listProd.map((product, index) => (
-                    <div key={index} className="vc-product-card">
-                        <img src={product.imageUrl} alt={product.name} className="vc-product-img" />
-                        <h3 className="vc-product-name">{product.name}</h3>
-                        <p><b>ID:</b> {product.id}</p>
-                        <p><b>Description:</b> {product.description}</p>
-                        <p><b>Brand:</b> {product.brand || 'N/A'}</p>
-                        <p><b>Category:</b> {Array.isArray(product.category) ? product.category.join(', ') : 'None'}</p>
-                        <p><b>Average Rate:</b> {product.averageRate}</p>
+                <div className="view-category__product-list">
+                    {listProd && listProd.map((product, index) => (
+                        <div key={index} className="view-category__product-card">
+                            <img src={product.imageUrl} alt={product.name} className="product-image" />
+                            <h3 className="product-name">{product.name}</h3>
+                            <div className="product-info">
+                                <p><strong>ID:</strong> {product.id}</p>
+                                <p><strong>Description:</strong> {product.description}</p>
+                                <p><strong>Brand:</strong> {product.brand || 'N/A'}</p>
+                                <p><strong>Category:</strong> {Array.isArray(product.category) ? product.category.join(', ') : 'None'}</p>
+                                <p><strong>Average Rate:</strong> {product.averageRate}</p>
+                            </div>
 
-                        <button className="vc-btn-delete vc-btn" onClick={() => HandleDeleteProduct(product.id)}>Xóa</button>
-                        <button className="vc-btn-add" onClick={() => HandleAddDetail(product)}>+</button>
+                            <div className="product-actions">
+                                <button 
+                                    className="action-btn action-btn--delete" 
+                                    onClick={() => HandleDeleteProduct(product.id)}
+                                >
+                                    Delete
+                                </button>
+                                <button 
+                                    className="action-btn action-btn--add" 
+                                    onClick={() => HandleAddDetail(product)}
+                                >
+                                    +
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                {showAdd && (
+                    <div className="view-category__modal-overlay">
+                        <div className="view-category__modal">
+                            <button 
+                                type="button"
+                                className="view-category__close-btn" 
+                                onClick={() => setShowAdd(false)}
+                            >
+                                ✕
+                            </button>
+                            
+                            <form onSubmit={HandleSubmit} className="view-category__form">
+                                <div className="form-header">
+                                    <h3>Add New Product</h3>
+                                    <p>Fill in the details below to create a new product</p>
+                                </div>
+
+                                <div className="form-group">
+                                    <label>Product Name</label>
+                                    <input
+                                        placeholder="Enter product name"
+                                        value={nameProduct}
+                                        onChange={(e) => setNameProduct(e.target.value)}
+                                        required
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label>Description</label>
+                                    <textarea
+                                        placeholder="Enter product description"
+                                        value={descriptionProduct}
+                                        onChange={(e) => setDescriptionProduct(e.target.value)}
+                                        required
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="optional">Brand</label>
+                                    <input
+                                        placeholder="Enter brand name"
+                                        value={BrandProduct}
+                                        onChange={(e) => setBrandProduct(e.target.value)}
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label>Product Image</label>
+                                    <div className="upload-section">
+                                        <div className="upload-icon">📷</div>
+                                        <div className="upload-text">Upload product image</div>
+                                        <UploadImage
+                                            ownerType="CATEGORY"
+                                            ownerId={id}
+                                            onUploaded={handleImageUploaded}
+                                        />
+                                    </div>
+                                    <input
+                                        disabled
+                                        placeholder="Image URL will appear here after upload"
+                                        value={imageUrlProduct}
+                                        onChange={(e) => setImageUrlProduct(e.target.value)}
+                                        style={{ marginTop: '10px' }}
+                                    />
+                                </div>
+
+                                <div className="form-actions">
+                                    <button type="submit">Save Product</button>
+                                    <button type="button" onClick={() => setShowAdd(false)}>Cancel</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                ))}
+                )}
             </div>
-
-            {showAdd && (
-                <div className="modal-overlay">
-                    <div className="modal">
-                        <form onSubmit={HandleSubmit} className="vc-form">
-                            <label className="vc-label">Product Name</label>
-                            <input
-                                className="vc-input"
-                                placeholder="Enter product name"
-                                value={nameProduct}
-                                onChange={(e) => setNameProduct(e.target.value)}
-                            />
-
-                            <label className="vc-label">Image URL</label>
-                            <input
-                                className="vc-input"
-                                placeholder="Enter image URL"
-                                value={imageUrlProduct}
-                                onChange={(e) => setImageUrlProduct(e.target.value)}
-                            />
-
-                            <label className="vc-label">Description</label>
-                            <input
-                                className="vc-input"
-                                placeholder="Enter description"
-                                value={descriptionProduct}
-                                onChange={(e) => setDescriptionProduct(e.target.value)}
-                            />
-
-                            <label className="vc-label">Brand</label>
-                            <input
-                                className="vc-input"
-                                placeholder="Enter brand"
-                                value={BrandProduct}
-                                onChange={(e) => setBrandProduct(e.target.value)}
-                            />
-
-                            <UploadImage
-                                ownerType="CATEGORY"
-                                ownerId={id}
-                                onUploaded={handleImageUploaded}
-                            />
-
-                            <button className="vc-btn vc-btn-submit" type="submit" >Submit</button>
-                            <button className="vc-btn" onClick={() => setShowAdd(false)}>Hủy</button>
-                        </form>
-                    </div>
-                </div>
-            )}
         </div>
     )
 }

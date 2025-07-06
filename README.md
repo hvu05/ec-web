@@ -165,3 +165,11 @@ Làm Menu, tạo trang đăng nhập, đăng ký, tạo Fake API với json-serv
 ### *d8* Thứ 7 (28/06)
 - Vẽ giao diện ListCategory
 - Chức năng xóa Category
+
+### *d9->d10* 03/7 -> 04/7 
+- Chức năng thêm xóa sửa Category for Admin
+- Chức năng thêm xóa sửa Product in Category for Admin
+- Chức năng thêm xóa sửa Detail in Product for Admin
+
+### *d11* 05/7
+- Vẽ CSS for Login, ListProuct for User

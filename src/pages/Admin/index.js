@@ -18,7 +18,7 @@ function Admin() {
     }
 
     const HandleAddProduct = async (e) => {
-        // e.preventDefault()
+        e.preventDefault()
 
         if (!token) {
             console.log('Error: No token found')
@@ -30,7 +30,7 @@ function Admin() {
         
         try {
             const res = await axios.post(`${URL_WEB}/category`, {
-                name: dataForm.name.toString(),  // Use form data instead of hardcoded values
+                name: dataForm.name.toString(),
                 description: dataForm.description.toString(),
                 urlImage: dataForm.url.toString()
             }, {
@@ -42,8 +42,9 @@ function Admin() {
             console.log('Success Response:', res.data)
             
             // Reset form after successful submission
-            setDataForm({ name: '', description: '' })
+            setDataForm({ name: '', description: '', url: '' })
             setShowform(false)
+            message.success('Category added successfully!')
             
         } catch (error) {
             console.log('Error details:', {
@@ -56,11 +57,12 @@ function Admin() {
             // Handle specific error cases
             if (error.response?.status === 401) {
                 message.error('Authentication failed - token may be invalid')
-                // Optionally redirect to login
             } else if (error.response?.status === 403) {
                 message.error('Permission denied')
             } else if (error.response?.status === 400) {
                 message.error('Bad request - check your data format')
+            } else {
+                message.error('An error occurred while adding category')
             }
         } finally {
             setLoading(false)
@@ -72,46 +74,100 @@ function Admin() {
     }
 
     return (
-        <>
-            {/* <button onClick={LoginAdmin}>Log in ADMIN</button> */}
-            <button onClick={() => setShowform(true)} className="accent">Add Product</button>
-            {/* <button onClick={() => setShowform(false)}>Hide Form</button> */}
-            
-            {showform && (
-                <form onSubmit={HandleAddProduct}>
-                    <input
-                        name="name"
-                        type="text"  // Use "text" instead of "string"
-                        placeholder="Input name product"
-                        value={dataForm.name}
-                        onChange={HandleChange}
-                        required
-                    />
-                    <input
-                        name="description"
-                        type="text"  // Use "text" instead of "string"
-                        placeholder="Input description"
-                        value={dataForm.description}
-                        onChange={HandleChange}
-                        required
-                    />
-                    {/* <input
-                        name="url"
-                        type="text"  // Use "text" instead of "string"
-                        placeholder="Input url"
-                        value={dataForm.url}
-                        onChange={HandleChange}
-                        required
-                    /> */}
-                    <button type="submit" disabled={loading}>
-                        {loading ? 'Submitting...' : 'Submit'}
+        <div className="admin-page">
+            <div className="admin-page__container">
+                <div className="admin-page__header">
+                    <h1>Admin Dashboard</h1>
+                    <p>Manage your products and categories with ease</p>
+                </div>
+                
+                <div className="admin-page__controls">
+                    <button 
+                        onClick={() => setShowform(true)} 
+                        className="admin-page__btn admin-page__btn--accent"
+                    >
+                        Add Category
                     </button>
-                </form>
-            )}
-            <div>
-                <ListCategory />
+                </div>
+                
+                {showform && (
+                    <div className="admin-page__form-overlay" onClick={() => setShowform(false)}>
+                        <div className="admin-page__form-modal" onClick={(e) => e.stopPropagation()}>
+                            <button 
+                                className="admin-page__close-btn"
+                                onClick={() => setShowform(false)}
+                            >
+                                ×
+                            </button>
+                            
+                            <form className="admin-page__form" onSubmit={HandleAddProduct}>
+                                <div className="form-header">
+                                    <h3>Add New Category</h3>
+                                    <p>Fill in the details below to create a new category</p>
+                                </div>
+                                
+                                <div className="form-group">
+                                    <label htmlFor="name">Category Name</label>
+                                    <input
+                                        id="name"
+                                        name="name"
+                                        type="text"
+                                        placeholder="Enter category name"
+                                        value={dataForm.name}
+                                        onChange={HandleChange}
+                                        required
+                                    />
+                                </div>
+                                
+                                <div className="form-group">
+                                    <label htmlFor="description">Description</label>
+                                    <textarea
+                                        id="description"
+                                        name="description"
+                                        placeholder="Enter category description"
+                                        value={dataForm.description}
+                                        onChange={HandleChange}
+                                        rows="3"
+                                        required
+                                    />
+                                </div>
+                                
+                                {/* <div className="form-group">
+                                    <label htmlFor="url">Image URL (Optional)</label>
+                                    <input
+                                        id="url"
+                                        name="url"
+                                        type="text"
+                                        placeholder="Enter image URL"
+                                        value={dataForm.url}
+                                        onChange={HandleChange}
+                                    />
+                                </div> */}
+                                
+                                <div className="form-actions">
+                                    <button 
+                                        type="button" 
+                                        onClick={() => setShowform(false)}
+                                    >
+                                        Cancel
+                                    </button>
+                                    <button 
+                                        type="submit" 
+                                        disabled={loading}
+                                    >
+                                        {loading ? 'Adding...' : 'Add Category'}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                )}
+                
+                <div className="admin-page__content">
+                    <ListCategory />
+                </div>
             </div>
-        </>
+        </div>
     )
 }
 

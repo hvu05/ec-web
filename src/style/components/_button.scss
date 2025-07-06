@@ -1,0 +1,32 @@
+@import '../abstracts/variables';
+.btn {
+  padding: $spacing-sm $spacing-md;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  font-family: $font-main;
+  cursor: pointer;
+  @include smooth();
+
+  &--primary {
+    background-color: $primary-color;
+    color: $white;
+
+    &:hover {
+      background-color: darken($primary-color, 8%);
+    }
+  }
+  &--noneprimary {
+    background-color: $white;
+    color: $primary-color;
+    border: solid 1px $primary-color;
+  }
+  &--accent {
+    background-color: $accent-color;
+    color: $white;
+
+    &:hover {
+      background-color: darken($accent-color, 8%);
+    }
+  }
+}

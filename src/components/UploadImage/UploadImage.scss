@@ -1,0 +1,44 @@
+@import "../../style/abstracts/mixins";
+
+.upload-image-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  
+  input[type="file"] {
+    padding: 8px;
+    border: 2px dashed #2A5CAA;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    cursor: pointer;
+    @include smooth(0.3s);
+    
+    &:hover {
+      border-color: #1e4a8a;
+      background-color: #e9ecef;
+    }
+    
+    &:focus {
+      outline: none;
+      border-color: #2A5CAA;
+      box-shadow: 0 0 0 2px rgba(42, 92, 170, 0.2);
+    }
+  }
+}
+
+.upload-loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background-color: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  color: #2A5CAA;
+  font-weight: 500;
+  
+  span {
+    font-size: 14px;
+  }
+} 

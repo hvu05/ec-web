@@ -1,0 +1,12 @@
+.card {
+  background-color: $white;
+  border-radius: 16px;
+  padding: $spacing-md;
+  box-shadow: $shadow;
+  @include smooth();
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  }
+}

@@ -5,7 +5,6 @@ import './ListCategory.scss'
 import axios from "axios"
 import { URL_WEB } from "../../constants"
 import EditCategory from "../EditCategory"
-import ViewCategory from "../ViewCategory"
 import { useNavigate } from "react-router-dom"
 
 function ListCategory() {
@@ -70,54 +69,53 @@ function ListCategory() {
         setShowView(true)
     }
     return (
-        <div className="category-container">
-            {/* {console.log(listCate)} */}
-            <div className="category-header">
-                <h2>Product Categories</h2>
-                {/* <p>Browse through our product categories</p> */}
-            </div>
-
-            {loading ? (
-                <div className="loading-container">
-                    <div className="loading-spinner"></div>
-                    <p>Loading categories...</p>
+        <div className="list-category">
+            <div className="list-category__container">
+                <div className="list-category__header">
+                    <h2>    </h2>
+                    <p>Browse through our product categories</p>
                 </div>
-            ) : (
-                listCate && listCate.length ? (
-                    <div className="category-grid">
-                        {listCate.map((item, index) => (
-                            <div key={index} className="category-card">
-                                <div className="category-icon">
-                                    {/* {console.log('urlimage', item.urlImage)} */}
-                                    <img src={item.urlImage} alt={index} />
-                                </div>
-                                <div className="category-content">
-                                    <h3 className="category-name">{item.name}</h3>
-                                    <p className="category-description">
-                                        {item.description || 'No description available'}
-                                    </p>
-                                    <div className="category-id">
-                                        <span className="id-label">ID:</span>
-                                        <span className="id-value">{item.id}</span>
-                                    </div>
-                                </div>
-                                <div className="category-actions">
-                                    <button className="view-btn" onClick={() => HandleViewCategory(item)}>View</button>
-                                    <button className="add-btn" onClick={() => HandleAddCategory(item)}>+</button>
-                                    <button className="edit-btn" onClick={() => HandleEditCategory(item)}>Edit</button>
-                                    <button className="delete-btn" onClick={() => HandleDeleteCategory(item.id)}>Delete</button>
-                                </div>
-                            </div>
-                        ))}
+
+                {loading ? (
+                    <div className="list-category__loading">
+                        <div className="loading-spinner"></div>
+                        <p>Loading categories...</p>
                     </div>
                 ) : (
-                    <div className="empty-state">
-                        <div className="empty-icon">📂</div>
-                        <h3>No Categories Found</h3>
-                        <p>There are no categories available at the moment.</p>
-                    </div>
-                )
-            )}
+                    listCate && listCate.length ? (
+                        <div className="list-category__grid">
+                            {listCate.map((item, index) => (
+                                <div key={index} className="list-category__card">
+                                    <img src={item.urlImage} alt={item.name} className="category-image" />
+                                    <div className="category-content">
+                                        <h3 className="category-name">{item.name}</h3>
+                                        <p className="category-description">
+                                            {item.description || 'No description available'}
+                                        </p>
+                                        <div className="category-id">
+                                            <span className="id-label">ID:</span>
+                                            <span className="id-value">{item.id}</span>
+                                        </div>
+                                    </div>
+                                    <div className="category-actions">
+                                        <button className="action-btn view-btn" onClick={() => HandleViewCategory(item)}>View</button>
+                                        {/* <button className="action-btn add-btn" onClick={() => HandleAddCategory(item)}>+</button> */}
+                                        <button className="action-btn edit-btn" onClick={() => HandleEditCategory(item)}>Edit</button>
+                                        <button className="action-btn delete-btn" onClick={() => HandleDeleteCategory(item.id)}>Delete</button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="list-category__empty">
+                            <div className="empty-icon">📂</div>
+                            <h3>No Categories Found</h3>
+                            <p>There are no categories available at the moment.</p>
+                        </div>
+                    )
+                )}
+            </div>
+            
             <div>
                 {show && <EditCategory
                     id={editCate.id}

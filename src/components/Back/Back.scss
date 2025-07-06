@@ -1,14 +1,13 @@
-@import '../../style/variables.scss';
+@import '../../style/abstracts/variables';
 
-.buttonBack{
-    button{
-        background-color: $primary-color;
-        width: 60px;
-        height: 30px;
-        border-radius: 5px;
-        color: white;
-        border: none;
-        margin-left: 10px;
-        cursor: pointer;
-    }
+.buttonBack {
+    background-color: $primary-color;
+    width: 60px;
+    height: 30px;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    margin-left: 10px;
+    cursor: pointer;
+    display: inline-block; // ✅ Chắc chắn không chiếm nguyên dòng
 }
