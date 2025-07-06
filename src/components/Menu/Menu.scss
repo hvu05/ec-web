@@ -1,55 +1,96 @@
-@import "../../style/variables";
+@import "../../style/abstracts/variables";
+@import "../../style/abstracts/mixins";
 
 .menu {
-  display: flex;
-  background-color: $primary-color;
-  height: 90px;
+  background-color: $white;
+  padding: $spacing-sm $spacing-lg;
+  box-shadow: $shadow;
   align-items: center;
-  // justify-content: center;
-  position: fixed; // Giữ cố định
-  top: 0; // Gắn ở đầu trang
-  left: 0;
-  width: 100%; // Chiều rộng toàn bộ trang
-  z-index: 1000; // Đảm bảo nằm trên các thành phần khác
-  //   background-color: white; // Nên có nền trắng để không bị "xuyên suốt"
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); // Đổ bóng nhẹ để phân tách
-  &__logout {
-    color: white;
-    font-size: 25px;
-    margin-left: 100px;
-    cursor: pointer;
-  }
-  &__logo {
-    display: flex;
-    font-size: 30px;
-    justify-content: center;
+
+  .menu__icon--logout {
+    font-size: 1.2rem;
     color: $text-color;
+    cursor: pointer;
+    @include smooth();
+
+    &:hover {
+      color: $accent-color;
+    }
+  }
+
+  .menu__logo {
+    cursor: pointer;
+    text-align: center;
+
     img {
-      max-width: 130px;
-      border-radius: 20px;
+      height: 40px;
+      @include smooth();
+
+      &:hover {
+        transform: scale(1.05);
+      }
     }
-    cursor: pointer;
   }
-  &__search {
-    // margin: 0 auto;
-    display: flex;
-    justify-content: center;
+
+  .menu__search {
     input {
-      width: 400px;
-      height: 50px;
-      border-radius: 40px;
-      border: none;
-      padding-left: 20px;
+      width: 100%;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid lighten($primary-color, 30%);
+      font-size: 1rem;
+      @include smooth();
+
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+        box-shadow: 0 0 0 2px rgba($primary-color, 0.1);
+      }
     }
   }
-  &__cart,
-  &__account {
+
+  .menu__cart,
+  .menu__account {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 5px;
-    color: $text-color;
-    font-size: 20px;
+    gap: 8px;
     cursor: pointer;
+    justify-content: center;
+    @include smooth();
+
+    i {
+      font-size: 1.2rem;
+      color: $primary-color;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+
+  .menu__cart-text,
+  .menu__account-text {
+    font-size: 0.95rem;
+    color: $text-color;
+  }
+}
+
+// Responsive
+@include respond(sm) {
+  .menu {
+    padding: $spacing-sm;
+
+    .menu__logo img {
+      height: 32px;
+    }
+
+    .menu__search input {
+      font-size: 0.9rem;
+    }
+
+    .menu__cart-text,
+    .menu__account-text {
+      display: none;
+    }
   }
 }

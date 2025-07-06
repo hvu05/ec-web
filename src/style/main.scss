@@ -1,0 +1,19 @@
+// Biến & mixin
+@import "abstracts/variables";
+@import "abstracts/mixins";
+@import "abstracts/animations";
+
+// Cơ bản
+@import "base/reset";
+@import "base/typography";
+
+// Layout
+@import "layout/header";
+@import "layout/footer";
+
+// Components
+@import "components/button";
+@import "components/card";
+
+// Pages
+@import "page/home";

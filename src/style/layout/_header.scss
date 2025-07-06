@@ -1,0 +1,19 @@
+.header {
+  background-color: $white;
+  padding: $spacing-md $spacing-lg;
+  box-shadow: $shadow;
+
+  .nav {
+    @include flex-center;
+    justify-content: space-between;
+
+    a {
+      padding: 0 $spacing-md;
+      font-weight: 500;
+
+      &:hover {
+        color: $accent-color;
+      }
+    }
+  }
+}

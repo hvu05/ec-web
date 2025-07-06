@@ -1,84 +1,488 @@
 /* src/components/EditCategory/EditCategory.scss */
 
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
+@import "../../style/abstracts/mixins";
+@import "../../style/abstracts/variables";
+
+.edit-category {
+  // =========================
+  // MODAL OVERLAY
+  // =========================
+  &__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+    @include fade-in(0.3s, ease-in);
+  }
+
+  // =========================
+  // MODAL CONTAINER
+  // =========================
+  &__modal {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border-radius: 24px;
+    padding: 40px;
+    max-width: 600px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    @include scale-in(0.4s, ease-out);
+    max-height: 90vh;
+    overflow-y: auto;
+
+    // Custom scrollbar
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, $primary-color, $accent-color);
+      border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(135deg, darken($primary-color, 10%), darken($accent-color, 10%));
+    }
+  }
+
+  // =========================
+  // CLOSE BUTTON
+  // =========================
+  &__close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include smooth(0.3s);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    z-index: 10;
+
+    &:hover {
+      background: linear-gradient(135deg, #dc2626, #b91c1c);
+      transform: scale(1.1) rotate(90deg);
+      box-shadow: 0 6px 16px rgba(239, 68, 68, 0.4);
+    }
+
+    &:active {
+      transform: scale(0.95) rotate(90deg);
+    }
+  }
+
+  // =========================
+  // MODAL HEADER
+  // =========================
+  &__header {
+    text-align: center;
+    margin-bottom: 32px;
+    @include fade-in-up(0.6s, ease-out);
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: $primary-color;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, $primary-color, $accent-color);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    p {
+      color: $text-color;
+      font-size: 1rem;
+      opacity: 0.8;
+    }
+  }
+
+  // =========================
+  // FORM STYLES
+  // =========================
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    @include fade-in-up(0.8s, ease-out);
+
+    .form-group {
+      position: relative;
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        color: $primary-color;
+        font-weight: 600;
+        font-size: 1rem;
+        position: relative;
+
+        &::after {
+          content: '*';
+          color: #ef4444;
+          margin-left: 4px;
+        }
+
+        &.optional::after {
+          content: ' (Optional)';
+          color: #6b7280;
+          font-weight: 400;
+        }
+      }
+
+      input, textarea {
+        width: 100%;
+        padding: 16px 20px;
+        border: 2px solid #e5e7eb;
+        border-radius: 12px;
+        font-size: 1rem;
+        background: #ffffff;
+        @include smooth(0.3s);
+
+        &:focus {
+          outline: none;
+          border-color: $primary-color;
+          box-shadow: 0 0 0 4px rgba($primary-color, 0.1);
+          transform: translateY(-2px);
+        }
+
+        &:hover {
+          border-color: #d1d5db;
+          transform: translateY(-1px);
+        }
+
+        &::placeholder {
+          color: #9ca3af;
+          font-style: italic;
+        }
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 100px;
+        font-family: inherit;
+      }
+
+      .input-icon {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #9ca3af;
+        font-size: 1.1rem;
+        pointer-events: none;
+        @include smooth(0.3s);
+      }
+
+      &:focus-within .input-icon {
+        color: $primary-color;
+      }
+    }
+
+    .upload-section {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      border: 2px dashed #d1d5db;
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      @include smooth(0.3s);
+
+      &:hover {
+        border-color: $primary-color;
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        transform: translateY(-2px);
+      }
+
+      .upload-label {
+        color: $primary-color;
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin-bottom: 16px;
+        display: block;
+      }
+
+      .upload-hint {
+        color: #6b7280;
+        font-size: 0.9rem;
+        margin-bottom: 16px;
+      }
+    }
+
+    .image-preview {
+      text-align: center;
+      @include fade-in(0.5s, ease-out);
+
+      img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        border: 3px solid white;
+        @include smooth(0.3s);
+
+        &:hover {
+          transform: scale(1.02);
+          box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+        }
+      }
+
+      .preview-label {
+        display: block;
+        color: $primary-color;
+        font-weight: 600;
+        margin-bottom: 12px;
+        font-size: 1rem;
+      }
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 16px;
+      margin-top: 20px;
+      padding-top: 24px;
+      border-top: 1px solid #e5e7eb;
+
+      @include respond(sm) {
+        flex-direction: column;
+      }
+
+      button {
+        flex: 1;
+        padding: 16px 24px;
+        border: none;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        @include smooth(0.3s);
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+          transition: left 0.5s;
+        }
+
+        &:hover::before {
+          left: 100%;
+        }
+
+        &:hover {
+          transform: translateY(-2px);
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+
+        &[type="submit"] {
+          background: linear-gradient(135deg, $primary-color, darken($primary-color, 10%));
+          color: white;
+          box-shadow: 0 4px 12px rgba($primary-color, 0.2);
+
+          &:hover {
+            box-shadow: 0 6px 20px rgba($primary-color, 0.4);
+            background: linear-gradient(135deg, darken($primary-color, 3%), darken($primary-color, 12%));
+          }
+
+          &:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+          }
+        }
+
+        &:not([type="submit"]) {
+          background: #f8fafc;
+          color: $text-color;
+          border: 2px solid #e5e7eb;
+
+          &:hover {
+            background: #f1f5f9;
+            border-color: #d1d5db;
+            color: $primary-color;
+          }
+        }
+      }
+    }
+  }
+
+  // =========================
+  // LOADING STATE
+  // =========================
+  &__loading {
+    text-align: center;
+    padding: 40px 20px;
+    color: $primary-color;
+
+    .loading-spinner {
+      margin: 0 auto 20px;
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba($primary-color, 0.3);
+      border-top: 3px solid $primary-color;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    p {
+      font-size: 1rem;
+      opacity: 0.8;
+    }
+  }
 }
 
-.modal {
-  background: #fff;
-  padding: 32px 24px 24px 24px;
-  border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-  min-width: 350px;
-  max-width: 90vw;
-  position: relative;
-  animation: fadeIn 0.3s;
+// =========================
+// RESPONSIVE DESIGN
+// =========================
+@include respond(lg) {
+  .edit-category {
+    &__modal {
+      max-width: 550px;
+      padding: 35px;
+    }
+
+    &__header {
+      h2 {
+        font-size: 1.8rem;
+      }
+    }
+  }
 }
 
-@keyframes fadeIn {
-  from { transform: translateY(-30px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+@include respond(md) {
+  .edit-category {
+    &__overlay {
+      padding: 15px;
+    }
+
+    &__modal {
+      padding: 30px;
+      max-height: 85vh;
+    }
+
+    &__header {
+      h2 {
+        font-size: 1.6rem;
+      }
+    }
+
+    &__form {
+      gap: 20px;
+
+      .form-group {
+        input, textarea {
+          padding: 14px 18px;
+        }
+      }
+    }
+  }
 }
 
-.modal button.close-btn {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  background: transparent;
-  border: none;
-  font-size: 22px;
-  color: #888;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-.modal button.close-btn:hover {
-  color: #e74c3c;
+@include respond(sm) {
+  .edit-category {
+    &__overlay {
+      padding: 10px;
+    }
+
+    &__modal {
+      padding: 20px;
+      margin: 10px;
+      max-height: 80vh;
+    }
+
+    &__header {
+      h2 {
+        font-size: 1.4rem;
+        margin-bottom: 6px;
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+    }
+
+    &__form {
+      gap: 18px;
+
+      .form-group {
+        input, textarea {
+          padding: 12px 16px;
+          font-size: 0.95rem;
+        }
+
+        label {
+          font-size: 0.95rem;
+        }
+      }
+
+      .upload-section {
+        padding: 20px;
+
+        .upload-label {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
 }
 
-.modal form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+// =========================
+// ANIMATION KEYFRAMES
+// =========================
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
-.modal label {
-  font-weight: 500;
-  margin-bottom: 4px;
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.modal input {
-  padding: 8px 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 16px;
-  transition: border 0.2s;
-}
-.modal input:focus {
-  border: 1.5px solid #007bff;
-  outline: none;
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
 }
 
-.modal button[type="submit"] {
-  margin-top: 8px;
-  padding: 10px 0;
-  background: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.modal button[type="submit"]:hover {
-  background: #0056b3;
+.edit-category__form button:hover {
+  animation: pulse 0.3s ease-in-out;
 }

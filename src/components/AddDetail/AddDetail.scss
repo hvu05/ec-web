@@ -1,0 +1,315 @@
+@import "../../style/abstracts/mixins";
+@import "../../style/abstracts/variables";
+
+.add-detail {
+  min-height: 100vh;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: $font-main;
+
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    @include fade-in(0.6s, ease-in);
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    @include slide-up(0.8s, ease-out);
+
+    h1 {
+      color: white;
+      font-size: 2rem;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
+
+  &__back-btn {
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    @include smooth(0.3s);
+    @include fade-in-up(1s, ease-out);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 30px;
+    @include fade-in-up(1.2s, ease-out);
+
+    @include respond(md) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__table-section {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    @include scale-in(0.8s, ease-out);
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    th {
+      background: linear-gradient(135deg, $primary-color, lighten($primary-color, 10%));
+      color: white;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    td {
+      color: $text-color;
+      font-size: 0.9rem;
+    }
+
+    tr {
+      @include smooth(0.3s);
+
+      &:hover {
+        background-color: rgba($primary-color, 0.05);
+        transform: scale(1.01);
+      }
+    }
+
+    tbody tr {
+      @include fade-in-up(0.6s, ease-out);
+      animation-delay: calc(var(--row-index, 0) * 0.1s);
+    }
+  }
+
+  &__delete-btn {
+    padding: 6px 12px;
+    background: #ff4757;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    @include smooth(0.3s);
+
+    &:hover {
+      background: #ff3742;
+      transform: scale(1.1);
+    }
+  }
+
+  &__form-section {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+    @include scale-in(1s, ease-out);
+  }
+
+  &__add-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, $accent-color, darken($accent-color, 10%));
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 20px;
+    @include smooth(0.3s);
+    @include fade-in-up(1.4s, ease-out);
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba($accent-color, 0.4);
+    }
+
+    &:active {
+      transform: translateY(-1px);
+    }
+  }
+
+  &__form {
+    @include fade-in-up(1.6s, ease-out);
+
+    .form-group {
+      margin-bottom: 20px;
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        color: $text-color;
+        font-weight: 500;
+        font-size: 0.95rem;
+      }
+
+      input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 1rem;
+        @include smooth(0.3s);
+
+        &:focus {
+          outline: none;
+          border-color: $primary-color;
+          box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+          transform: translateY(-1px);
+        }
+
+        &::placeholder {
+          color: #999;
+        }
+      }
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 25px;
+
+      button {
+        flex: 1;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        @include smooth(0.3s);
+
+        &[type="submit"] {
+          background: linear-gradient(135deg, $primary-color, darken($primary-color, 10%));
+          color: white;
+
+          &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba($primary-color, 0.3);
+          }
+        }
+
+        &:not([type="submit"]) {
+          background: #f8f9fa;
+          color: $text-color;
+          border: 1px solid #e0e0e0;
+
+          &:hover {
+            background: #e9ecef;
+            transform: translateY(-1px);
+          }
+        }
+      }
+    }
+  }
+
+  &__close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #ff4757;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 1rem;
+    @include smooth(0.3s);
+
+    &:hover {
+      background: #ff3742;
+      transform: scale(1.1);
+    }
+  }
+}
+
+// Responsive design
+@include respond(sm) {
+  .add-detail {
+    padding: 15px;
+
+    &__header {
+      flex-direction: column;
+      gap: 15px;
+      text-align: center;
+
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+
+    &__content {
+      gap: 20px;
+    }
+
+    &__table {
+      font-size: 0.8rem;
+
+      th, td {
+        padding: 10px 8px;
+      }
+    }
+  }
+}
+
+// Animation keyframes
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+// Additional animations
+.add-detail__table tbody tr {
+  animation: slideInFromRight 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.add-detail__add-btn:hover {
+  animation: pulse 0.6s ease-in-out;
+} 

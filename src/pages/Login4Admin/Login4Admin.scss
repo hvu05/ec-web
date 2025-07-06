@@ -1,82 +1,128 @@
-@import "../../style/variables.scss";
 
-.loginadmin-wrapper {
-  background: linear-gradient(135deg, #002428, #002428);
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", "sans-serif";
 }
 
-.loginadmin {
-  // position: absolute;
+.admin-login-container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #002428;
-  width: 450px;
-  height: 400px;
-  top: 50%;
-  left: 50%;
+  min-height: 100vh;
+  background: url('https://png.pngtree.com/background/20230413/original/pngtree-colorful-ethereal-effect-background-picture-image_2422413.jpg') no-repeat;
+  background-size: cover;
+}
+
+.wrapper {
+  width: 420px;
+  background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #fff;
   border-radius: 10px;
-//   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px 40px;
+}
 
-  &__dangnhap {
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
+.wrapper h1 {
+  font-size: 36px;
+  text-align: center;
+}
+
+.wrapper .input-box {
+  width: 100%;
+  height: 50px;
+  margin: 30px 0;
+}
+
+.input-box input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 40px;
+  font-size: 16px;
+  color: #fff;
+  padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder {
+  color: #fff;
+}
+
+.wrapper .remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14.5px;
+  margin: -15px 0 15px;
+}
+
+.remember-forgot label input {
+  accent-color: #fff;
+  margin-right: 3px;
+}
+
+.remember-forgot a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.remember-forgot a:hover {
+  text-decoration: underline;
+}
+
+.wrapper .btn {
+  width: 100%;
+  height: 45px;
+  background-color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+  font-weight: 600;
+}
+
+.wrapper .user-link {
+  font-size: 14.5px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.user-link p a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.user-link p a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .wrapper {
+    width: 90%;
+    padding: 20px 30px;
   }
-  &__name {
-    display: flex;
-    padding-top: 30px;
-    align-items: center;
-    input {
-      height: 50px;
-      width: 300px;
-      margin-bottom: 10px;
-      border-radius: 5px;
-      border: none;
-      padding: 0 40px;
-      font-size: 15px;
-      border: solid 1px #dbdbdb;
-      font-family: 'Courier New', Courier, monospace;
-    }
+  
+  .wrapper h1 {
+    font-size: 28px;
   }
-  &__password {
-    .ant-input {
-      height: 50px;
-      width: 380px;
-      margin-bottom: 10px;
-      border-radius: 5px;
-      border: none;
-      padding: 0 40px;
-      font-size: 15px;
-      border: solid 1px #dbdbdb;
-      &::placeholder{
-        font-family: 'Courier New', Courier, monospace;
-        color: #757575;
-      }
-    }
-  }
-  &__submit {
-    button {
-      height: 50px;
-      width: 130px;
-      background-color: #F06923;
-      border-radius: 10px;
-      margin: 30px 0;
-      color: white;
-      font-weight: bold;
-      font-size: 15px;
-      border: none;
-      cursor: pointer;
-    }
-  }
-  &__signin {
-    font-style: italic;
-    text-decoration: underline;
-    cursor: pointer;
-    margin-left: 250px;
+  
+  .input-box input {
+    font-size: 14px;
+    padding: 15px 35px 15px 15px;
   }
 }
+
+

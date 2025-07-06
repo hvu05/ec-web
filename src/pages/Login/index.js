@@ -7,12 +7,12 @@ import './Login.scss'
 import { useNavigate } from "react-router-dom"
 // import { EyeOutlined, EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons'
 import { message } from 'antd'
-import {Input, Space } from 'antd'
+import { Input, Space } from 'antd'
 
 function Login() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-//   const [passwordVisible, setPasswordVisible] = React.useState(false);
+    //   const [passwordVisible, setPasswordVisible] = React.useState(false);
     const navigate = useNavigate()
 
     const HandleSubmit = async (e) => {
@@ -31,7 +31,7 @@ function Login() {
             // xử lí khi đăng nhập thành công
             // console.log('Đăng nhập thành công', response.data)
             message.success('Đăng nhập thành công')
-            console.log("In login user",response)
+            console.log("In login user", response.data.data.accessToken)
             localStorage.setItem('token', response.data.data.accessToken)
             // console.log('Data.token:', response.data.result.accessToken)
             navigate('/home')
@@ -47,24 +47,51 @@ function Login() {
     }
     return (
         <>
-            <div className="login-wrapper">
-                <form onSubmit={HandleSubmit} className="login">
-                    <div className="login__dangnhap">Đăng nhập</div>
-                    <div className="login__name">
-                        <input placeholder="Tên đăng nhập" type="text" onChange={(e) => setUsername(e.target.value)} />
-                    </div>
-                    <div className="login__password">
-                        <Space >
-                            <Input.Password className='ant-input' placeholder="Nhập mật khẩu" onChange={(e) => setPassword(e.target.value)}/>
-                        </Space>
-                    </div>
-                    <div className="login__signin" onClick={HandleSignin}>
-                        Bạn chưa có tài khoản?
-                    </div>
-                    <div className="login__submit">
-                        <button type="submit">Login</button>
-                    </div>
-                </form>
+            {/* <div className="login-wrapper"></div>  */}
+            <div className="login-container">
+                <div className="wrapper">
+                    <form onSubmit={HandleSubmit} className="login">
+                        {/* <div className="login__dangnhap">Login Account</div>
+                        <div className="login__name">
+                            <input placeholder="Email ID" type="text" onChange={(e) => setUsername(e.target.value)} />
+                        </div>
+                        <div className="login__password">
+                            <Space >
+                                <Input.Password className='ant-input' placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                            </Space>
+                        </div>
+                        <div className="login__signin" onClick={HandleSignin}>
+                            Bạn chưa có tài khoản?
+                        </div>
+                        <div className="login__submit">
+                            <button type="submit">Login</button>
+                        </div> */}
+
+                        <h1>Login</h1>
+                        <div className="input-box">
+                            <input placeholder="Email ID" type="text" onChange={(e) => setUsername(e.target.value)} />
+                            {/* <i class='bx  bx-stamp'  ></i>  */}
+                        </div>
+
+                        <div className="input-box">
+                            <input type="password" placeholder="Password" required onChange={(e) => setPassword(e.target.value)} />
+                            {/* <i class='bx  bx-lock'  ></i>  */}
+                        </div>
+
+                        <div className="remember-forgot">
+                            <label>
+                                <input type="checkbox" />Remember me
+                            </label>
+                            <a href="#">Forgot password</a>
+                        </div>
+
+                        <button type="submit" className="btn">Login</button>
+
+                        <div className="register-link">
+                            <p>Don't have an account? <a onClick={HandleSignin}>Register</a></p>
+                        </div>
+                    </form>
+                </div>
             </div>
         </>
     )

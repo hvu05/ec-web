@@ -1,79 +1,257 @@
-.sanphamnoibat{
-    color: #55596C;
-    font-size: 25px;
-    font-weight: bold;
-    text-align: center;
-    padding: 20px 20px;
-    margin-top: 100px;
-}
-.sanpham{
-    color: #55596C;
-    font-size: 25px;
-    font-weight: bold;
-    text-align: center;
-    padding: 20px 20px;
-    // margin-top: 100px;
-}
-.product__list{
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 20px;
-    gap: 20px;
-    justify-content: center;
-}
-.product__item{
-    width: 20%;
-    margin-bottom: 20px;
-    margin-right: 20px;
-    // border: solid 2px #888;
-    border-radius: 10px;
-    box-shadow: 0 10px 10px rgba(#887, 0.2);
-    transition: transform 0.3s ease;
-    position: relative;
-    height: 450px;
-    max-height: 450px;
-    &:hover{
-        transform: scale(1.05);
-    }
-    img{
-        max-width: 300px;
-        max-height: 400px;
-    }
-    .product__image img{
-        display: flex;
-        aspect-ratio: 4/3;
-        object-fit: cover;
-        border-radius: 10px;
-        margin: 0 auto;
-        padding-top: 10px;
-    }
-    .product__name {
-        display: flex;
-        justify-content: center;
-        font-weight: bold;
-        padding: 10px 10px;
-        font-size: 20px;
-        max-height: 30px;
-    }
-}
-.product__price{
-    text-align: left;
-    margin: 30px 30px;
-}
-.cart {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background-color: #ff4d4f;
-    color: white;
-    padding: 6px 12px;
-    border-radius: 5px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    cursor: pointer;
+@import "../../style/abstracts/mixins";
+:root {
+  --bodyBack: #00827F;
+  --textColor: #1b2741;
+  --starColor: #f67034;
+  --sectionBack: #f7f6f9;
 }
 
-/* hiện khi hover */
-.product__item:hover .cart {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Raleway', sans-serif;
+}
+
+// Home page specific background
+.home-page {
+  min-height: 100vh;
+  // background: url('https://i.pinimg.com/736x/8e/f3/f7/8ef3f7582ad5f99b05dc8a0e9e4af09a.jpg') no-repeat center center fixed;
+  background-size: cover;
+  padding: 20px 0;
+  // background: #00827F;
+}
+
+// Override body background for home page
+body.home-background {
+  // background: url('https://i.pinimg.com/736x/8e/f3/f7/8ef3f7582ad5f99b05dc8a0e9e4af09a.jpg') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.container {
+  width: 80vw;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0 auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  // background-color: #1b2741;
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  // background-color: #1b2741;
+  @include fade-in(0.6s, ease-in);
+}
+
+.header {
+  width: 100%;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 4em;
+  text-transform: uppercase;
+  color: var(--textColor);
+}
+.intro {
+  background: url('https://cdn.photoroom.com/v2/image-cache?path=gs://background-7ef44.appspot.com/backgrounds_v3/ocean/38_ocean.jpg') no-repeat center center;
+  background-size: cover;
+  height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  @include slide-up(0.8s, ease-out);
+}
+
+.products {
+  width: 100%;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.product {
+  position: relative;
+  background-color: var(--sectionBack);
+  width: 350px;
+  height: 100%;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 20px 40px;
+  border-radius: 10px;
+  transition: 0.3s;
+  background-color: #F7F7F7;
+  // @include scale-in(0.4s, ease-out);
+  @include scale-in(0.4s, ease-out);
+  &:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.image {
+  width: 100%;
+  height: 60%;
+  display: grid;
+  place-items: center;
+  img {
+    width: 240px;
+    border-radius: 10px;
+  }
+}
+.namePrice {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  div {
+    font-size: 18px;
+    text-transform: capitalize;
+    color: black;
+    font-weight: none;
+  }
+  span {
+    font-size: 1.5em;
+    color: yellowgreen;
+
+  }
+}
+
+.product p {
+  font-size: 14px;
+  line-height: 25px;
+  color: gray;
+  overflow: hidden;
+}
+.stars svg {
+  font-size: 13em;
+  color: rosybrown;
+}
+.buy {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  button {
+    padding: 10px 20px;
+    border-radius: 7px;
+    border: none;
+    color: #1b2741;
+    font-size: 18px;
+    text-transform: capitalize;
+    cursor: pointer;
+    transition: 0.2s;
+    @include fade-in(0.4s, ease-out);
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+/* Responsive design for home background */
+@media (max-width: 768px) {
+  .home-page {
+    padding: 10px 0;
+  }
+  
+  .container {
+    width: 95vw;
+    padding: 15px;
+  }
+  
+  .home__highlight-title,
+  .home__list-title {
+    font-size: 1.5em;
+    margin: 15px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-page {
+    padding: 5px 0;
+  }
+  
+  .container {
+    width: 98vw;
+    padding: 10px;
+  }
+  
+  .home__highlight-title,
+  .home__list-title {
+    font-size: 1.2em;
+    margin: 10px 0;
+  }
+}
+
+// Welcome & Intro Section
+.welcome-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 350px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  background: transparent;
+  backdrop-filter: blur(12px);
+  border: 2px solid #2A5CAA;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 32px 24px;
+}
+
+// Animation keyframes
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
     opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Welcome title animation
+.welcome-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #2A5CAA;
+  margin-bottom: 18px;
+  animation: slideInLeft 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+// Intro content animation
+.intro-content {
+  text-align: center;
+}
+
+.intro-text {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 10px;
+  animation: slideInUp 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.intro-subtext {
+  font-size: 1rem;
+  color: #555;
+  animation: slideInUp 1.1s cubic-bezier(0.23, 1, 0.32, 1);
 }

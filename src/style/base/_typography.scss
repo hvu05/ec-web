@@ -1,0 +1,22 @@
+body {
+  font-family: $font-main;
+  font-size: 16px;
+  color: $text-color;
+  // background-color: $white;
+  line-height: 1.6;
+}
+
+// a {
+//   color: $primary-color;
+//   text-decoration: none;
+//   @include smooth();
+
+//   &:hover {
+//     color: $accent-color;
+//   }
+// }
+
+// h1, h2, h3, h4, h5 {
+//   font-weight: 600;
+//   color: $primary-color;
+// }

@@ -25,7 +25,7 @@ function MenuProduct() {
         <>
             <Row className='menu'>
                 <Col span={4} onClick={HandleLogout}>
-                    <i className="fa-solid fa-right-from-bracket menu__logout"></i>
+                    <i className="fa-solid fa-right-from-bracket menu__icon--logout"></i>
                 </Col>
                 <Col span={4}>
                     <div className='menu__logo' onClick={HandleClickLogo}>
@@ -34,22 +34,27 @@ function MenuProduct() {
                 </Col>
                 <Col span={8}>
                     <div className='menu__search'>
-                        <input placeholder='Search' onKeyDown={onSearch} onChange={(e) => setSearch(e.target.value)} />
+                        <input
+                            placeholder='Search'
+                            onKeyDown={onSearch}
+                            onChange={(e) => setSearch(e.target.value)}
+                        />
                     </div>
                 </Col>
                 <Col span={3}>
-                    <div className='menu__cart'>
+                    <div className='menu__cart' onClick={HandleClickCart}>
                         <i className="fa-solid fa-cart-shopping"></i>
-                        <div className='menu__cart__content' onClick={HandleClickCart}>Giỏ hàng {cartCount}</div>
+                        <div className='menu__cart-text'>Giỏ hàng {cartCount}</div>
                     </div>
                 </Col>
                 <Col span={3}>
                     <div className='menu__account'>
                         <i className="fa-solid fa-circle-user"></i>
-                        <div className='menu__cart__content'>{token ? "Đã đăng nhập" : "Chưa đăng nhập"}</div>
+                        <div className='menu__account-text'>{token ? "Đã đăng nhập" : "Chưa đăng nhập"}</div>
                     </div>
                 </Col>
             </Row>
+
         </>
     )
 }
