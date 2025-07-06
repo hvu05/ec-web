@@ -23,33 +23,32 @@ function ProductDetail() {
     const averageRate = prd.averageRate || 0
     const productDetail = prd.productDetail || []
 
-    const HandleAddCart = (item) => {
+    const HandleAddCart = async (item) => {
         // console.log(item)
         const token = localStorage.getItem('token')
         const productId = prd.id
         const detailId = item?.id || productId
 
-        axios.post(`${URL_WEB}/cart-item`, {
-            productId: productId,
-            num: quantity,
-            detailId: detailId
-        }, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })
-            .then(() => {
-                message.success("Đã thêm vào giỏ hàng!")
-                dispatch(increment())
-            })
-            .catch((err) => {
-                if (err.response?.status === 401) {
-                    message.error("Bạn cần đăng nhập để thêm sản phẩm.")
-                } else {
-                    message.error("Thêm vào giỏ hàng thất bại.")
-                    console.error(err)
+        try {
+            const response = await axios.post(`${URL_WEB}/cart-item`, {
+                productId: productId,
+                num: quantity,
+                detailId: detailId
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
                 }
             })
+            console.log('Response in Add cart', response)
+        }
+        catch(err) {
+            if (err.response?.status === 401) {
+                message.error("Bạn cần đăng nhập để thêm sản phẩm.")
+            } else {
+                message.error("Thêm vào giỏ hàng thất bại.")
+                console.error(err)
+            }
+        }
     }
 
     const handleBuyNow = (item) => {

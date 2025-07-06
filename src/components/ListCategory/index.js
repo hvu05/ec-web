@@ -72,7 +72,6 @@ function ListCategory() {
         <div className="list-category">
             <div className="list-category__container">
                 <div className="list-category__header">
-                    <h2>    </h2>
                     <p>Browse through our product categories</p>
                 </div>
 
