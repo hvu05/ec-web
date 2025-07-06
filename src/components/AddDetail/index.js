@@ -12,8 +12,8 @@ function AddDetail() {
     const token = localStorage.getItem('token')
 
     const [info, setInfo] = useState('')
-    const [price, setPrice] = useState(0)
-    const [quantity, setQuantity] = useState(0)
+    const [price, setPrice] = useState('')
+    const [quantity, setQuantity] = useState('')
     const [showForm, setShowForm] = useState(false)
 
     const navigate = useNavigate()
@@ -49,13 +49,17 @@ function AddDetail() {
             })
             setListProd(response.data.data.productDetail)
             console.log('OK', response.data.data)
+            setInfo('')
+            setPrice('')
+            setQuantity('')
+
         } catch {
             console.log('err at post detail')
         }
     }
     const HandleDeleteDetail = async (idDetail) => {
         try {
-            await axios.delete(`${URL_WEB}/product/${idDetail}`, {
+            await axios.delete(`${URL_WEB}/product/${id}/detail/${idDetail}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -70,23 +74,23 @@ function AddDetail() {
         <div className="add-detail">
             <div className="add-detail__container">
                 <div className="add-detail__header">
-                    <h1>Quản lý Chi tiết Sản phẩm</h1>
+                    <h1>Product Details Management</h1>
                     <button className="add-detail__back-btn" onClick={() => navigate(-1)}>
-                        ← Quay lại
+                        ← Back
                     </button>
                 </div>
 
                 <div className="add-detail__content">
                     <div className="add-detail__table-section">
-                        <h2>Danh sách Chi tiết</h2>
+                        <h2>List of Product Details</h2>
                         <table className="add-detail__table">
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Thông tin</th>
-                                    <th>Giá</th>
-                                    <th>Số lượng</th>
-                                    <th>Thao tác</th>
+                                    <th>Infomation</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Remove</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -115,34 +119,26 @@ function AddDetail() {
                             className="add-detail__add-btn" 
                             onClick={() => setShowForm(true)}
                         >
-                            + Thêm Chi tiết Mới
+                            + Add New Detail
                         </button>
 
                         {showForm && (
                             <form className="add-detail__form" onSubmit={HandleAddDetail}>
-                                <button 
-                                    type="button"
-                                    className="add-detail__close-btn" 
-                                    onClick={() => setShowForm(false)}
-                                >
-                                    ✕
-                                </button>
-
                                 <div className="form-group">
-                                    <label>Thông tin</label>
+                                    <label>Information</label>
                                     <input 
                                         value={info}
-                                        placeholder="Nhập thông tin chi tiết"
+                                        placeholder="Input information"
                                         onChange={(e) => setInfo(e.target.value)}
                                         required
                                     />
                                 </div>
 
                                 <div className="form-group">
-                                    <label>Giá</label>
+                                    <label>Price</label>
                                     <input 
                                         value={price}
-                                        placeholder="Nhập giá"
+                                        placeholder="Input price"
                                         type="number"
                                         onChange={(e) => setPrice(e.target.value)}
                                         required
@@ -150,20 +146,20 @@ function AddDetail() {
                                 </div>
 
                                 <div className="form-group">
-                                    <label>Số lượng</label>
+                                    <label>Quantity</label>
                                     <input 
                                         type="number"
                                         value={quantity}
-                                        placeholder="Nhập số lượng"
+                                        placeholder="Input Quantity"
                                         onChange={(e) => setQuantity(e.target.value)}
                                         required
                                     />
                                 </div>
 
                                 <div className="form-actions">
-                                    <button type="submit">Lưu</button>
+                                    <button type="submit">Save</button>
                                     <button type="button" onClick={() => setShowForm(false)}>
-                                        Hủy
+                                        Cancel
                                     </button>
                                 </div>
                             </form>

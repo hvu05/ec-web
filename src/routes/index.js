@@ -23,38 +23,38 @@ export const routes = [
                 path: 'signin',
                 element: <Signin />
             },
-            { //!Đặt Home tạm thời ở Public cho dễ dàng theo dõi
-                path: 'home',
-                element: <Home />
-            },
-            { //!Đặt Home tạm thời ở Public cho dễ dàng theo dõi
-                path: 'cart',
-                element: <Cart />
-            },
-            { //!Đặt Home tạm thời ở Public cho dễ dàng theo dõi
-                path: 'detail',
-                element: <ProductDetail />
-            },
-            {
-                path: 'admin-home',
-                element: <Admin />
-            },
             {
                 path: 'admin',
                 element: <Login4Admin />
             },
             {
-                path: 'admin-home/:name',
-                element: <ViewCategory />
-            },
-              {
-                path: 'admin-home/:name/:id',
-                element: <AddDetail />
-            },
-            {
                 element: <Private />,
                 children: [
+                    {
+                        path: 'home',
+                        element: <Home />
+                    },
+                    {
+                        path: 'cart',
+                        element: <Cart />
+                    },
+                    { 
+                        path: 'detail',
+                        element: <ProductDetail />
+                    },
+                    {
+                        path: 'admin-home',
+                        element: <Admin />
+                    },
 
+                    {
+                        path: 'admin-home/:name',
+                        element: <ViewCategory />
+                    },
+                    {
+                        path: 'admin-home/:name/:id',
+                        element: <AddDetail />
+                    }
                 ]
             }
         ]

@@ -28,6 +28,29 @@ function ViewCategory() {
     const token = localStorage.getItem('token')
     const [showAdd, setShowAdd] = useState(false)
     // console.log('id', props.id)
+    const HandleGetProductById = async () => {
+        try {
+            const response = await axios.get(`${URL_WEB}/product`, {
+                headers: {Authorization: `Bearer ${token}`},
+                params: {}
+            })
+            // console.log('Res at HandleGetProductById', response.data.data)
+            const listProduct = response.data.data
+            const filteredProducts = listProduct.filter(product =>
+                Array.isArray(product.category) && product.category.includes(name)
+            )   
+            // console.log('da loc', filteredProducts)
+            setListProd(filteredProducts)
+        } catch (err) {
+            console.log('Error at HandleGetProductById', err)
+        }
+    }
+    useEffect(() => {
+        const TempFunc = async() => {
+            await HandleGetProductById()
+        }
+        TempFunc()
+    }, [])
 
     useEffect(() => {
         setID(id)
@@ -94,23 +117,7 @@ function ViewCategory() {
             console.log('err delete')
         }
     }
-    const HandleGetProductById = async () => {
-        try {
-            const response = await axios.get(`${URL_WEB}/product`, {
-                headers: {Authorization: `Bearer ${token}`},
-                params: {}
-            })
-            // console.log('Res at HandleGetProductById', response.data.data)
-            const listProduct = response.data.data
-            const filteredProducts = listProduct.filter(product =>
-                Array.isArray(product.category) && product.category.includes(name)
-            )   
-            // console.log('da loc', filteredProducts)
-            setListProd(filteredProducts)
-        } catch (err) {
-            console.log('Error at HandleGetProductById', err)
-        }
-    }
+
     const HandleAddDetail = (item) => {
         console.log('item in view cat', item)
         navigate(`/admin-home/${item.name}/${item.id}`, {

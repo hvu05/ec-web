@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { URL_CART} from "../../constants"
+import axios from "axios"
 
 function useFetchAPIcart() {
     const [cart, setCart] = useState([])
@@ -8,21 +9,20 @@ function useFetchAPIcart() {
 
     // console.log('Token in Fetch:', token)
     useEffect(() => {
-        fetch(URL_CART, {
-            method: 'GET',
-            headers: {
-                Authorization: `Bearer ${token}`
+        const FetchCart = async () => {
+            try {
+                const response = await axios.get(URL_CART, {
+                    headers: {Authorization: `Bearer ${token}`}
+                })
+                console.log('In useFetch cart', response)
+                setCart(response.data)
+                setLoading(false)
+            } catch(err) {
+                console.log('Error at fetch cart', err)
+                setLoading(false)
             }
-        })
-            .then(res => res.json())
-            .then(cart => {
-                setCart(cart)
-                setLoading(false)
-            })
-            .catch(err => {
-                console.log("Loi khi loading san pham", err)
-                setLoading(false)
-            })
+        }
+        FetchCart()
     }, [])
     return {cart, loading}
 }

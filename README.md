@@ -173,3 +173,6 @@ Làm Menu, tạo trang đăng nhập, đăng ký, tạo Fake API với json-serv
 
 ### *d11* 05/7
 - Vẽ CSS for Login, ListProuct for User
+
+### *d12* 06/7
+- Viết css và chỉnh sửa Giỏ hàng
