@@ -21,12 +21,12 @@ function Admin() {
         e.preventDefault()
 
         if (!token) {
-            console.log('Error: No token found')
+            // console.log('Error: No token found')
             return
         }
 
         setLoading(true)
-        console.log('Sending data:', dataForm)
+        // console.log('Sending data:', dataForm)
         
         try {
             const res = await axios.post(`${URL_WEB}/category`, {
@@ -39,7 +39,7 @@ function Admin() {
                 }
             })
             
-            console.log('Success Response:', res.data)
+            // console.log('Success Response:', res.data)
             
             // Reset form after successful submission
             setDataForm({ name: '', description: '', url: '' })

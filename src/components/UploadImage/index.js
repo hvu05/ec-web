@@ -18,7 +18,7 @@ function UploadImage({ ownerType, ownerId, onUploaded }) {
             formData.append("ownerType", String(ownerType))
             formData.append("ownerId", String(ownerId))
 
-            console.log('FILE:', file)
+            // console.log('FILE:', file)
 
             const token = localStorage.getItem("token")
             console.log('upload anh', token)

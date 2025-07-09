@@ -1,7 +1,7 @@
 export function getCookie(cname) {
-    console.log(document.cookie)
+    // console.log(document.cookie)
     var listCookie = document.cookie.split(';')
-    console.log(listCookie)
+    // console.log(listCookie)
     listCookie.forEach(item => {
         const name = item.split('=')[0]
         if(name === cname){
