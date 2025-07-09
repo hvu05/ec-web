@@ -15,7 +15,7 @@ function useFetchAPIProduct() {
                     params: {}
                 })
                 setproduct(reponse.data)
-                console.log('Response data:', reponse.data.data)
+                // console.log('Response data:', reponse.data.data)
                 setLoading(false)
             } catch {
                 setLoading(false)

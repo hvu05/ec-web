@@ -14,11 +14,11 @@ function useFetchAPIcart() {
                 const response = await axios.get(URL_CART, {
                     headers: {Authorization: `Bearer ${token}`}
                 })
-                console.log('In useFetch cart', response)
-                setCart(response.data)
+                // console.log('In useFetch cart', response.data.data.cartItems)
+                setCart(response.data.data.cartItems)
                 setLoading(false)
             } catch(err) {
-                console.log('Error at fetch cart', err)
+                // console.log('Error at fetch cart', err)
                 setLoading(false)
             }
         }

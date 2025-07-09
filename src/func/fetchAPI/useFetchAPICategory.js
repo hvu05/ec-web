@@ -14,13 +14,13 @@ function useFetchAPICategory() {
             }
         })
             .then(res => {
-                console.log('res:', res.data.data)
+                // console.log('res:', res.data.data)
                 setCategory(res.data.data)
                 setLoading(false)
             })
             .catch(err => {
                 message.error('Error from component ListCategory')
-                console.error(err)
+                // console.error(err)
                 setLoading(false)
             })
     }, [])

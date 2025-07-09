@@ -176,3 +176,11 @@ Làm Menu, tạo trang đăng nhập, đăng ký, tạo Fake API với json-serv
 
 ### *d12* 06/7
 - Viết css và chỉnh sửa Giỏ hàng
+
+### *d13* 09/7
+- Chỉnh giỏ hàng (tăng giảm quantity, change info)
+- Sơ bộ về Address
+
+## Các chức năng còn thiếu
+- Thêm địa chỉ, chỉnh sửa địa chỉ
+- Admin duyệt đơn hàng*

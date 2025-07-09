@@ -9,26 +9,19 @@ function MenuProduct() {
     const [search, setSearch] = useState("")
     const token = localStorage.getItem('token') // Kiểm tra xem có đăng nhập chưa để hiển thị (Đăng nhập) hoặc (Đã đăng nhập) ở thanh account
     const cartCount = useSelector((state) => state.cart.count)
+
     const onSearch = (e) => { /// Khi ấn Enter thì tự động search
         if (e.key === 'Enter') console.log("SEARCH:", search);
     }
-    const HandleClickCart = () => {
-        navigate("/cart")
-    }
-    const HandleLogout = () => {
-        navigate('/')
-    }
-    const HandleClickLogo = () => {
-        navigate('/home')
-    }
+
     return (
         <>
             <Row className='menu'>
-                <Col span={4} onClick={HandleLogout}>
+                <Col span={4} onClick={() => {navigate('/')}}>
                     <i className="fa-solid fa-right-from-bracket menu__icon--logout"></i>
                 </Col>
                 <Col span={4}>
-                    <div className='menu__logo' onClick={HandleClickLogo}>
+                    <div className='menu__logo' onClick={() => {navigate('/home')}}>
                         <img src='/logo.png' alt='logo' />
                     </div>
                 </Col>
@@ -42,13 +35,13 @@ function MenuProduct() {
                     </div>
                 </Col>
                 <Col span={3}>
-                    <div className='menu__cart' onClick={HandleClickCart}>
+                    <div className='menu__cart' onClick={() => {navigate("/cart")}}>
                         <i className="fa-solid fa-cart-shopping"></i>
                         <div className='menu__cart-text'>Giỏ hàng {cartCount}</div>
                     </div>
                 </Col>
                 <Col span={3}>
-                    <div className='menu__account'>
+                    <div className='menu__account' onClick={() => {navigate('/user')}}>
                         <i className="fa-solid fa-circle-user"></i>
                         <div className='menu__account-text'>{token ? "Đã đăng nhập" : "Chưa đăng nhập"}</div>
                     </div>

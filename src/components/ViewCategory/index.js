@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import UploadImage from "../UploadImage"
 import { useLocation, useNavigate } from "react-router-dom"
 import './ViewCategory.scss'
+import { message } from "antd"
 
 function ViewCategory() {
     const navigate = useNavigate()
@@ -42,7 +43,8 @@ function ViewCategory() {
             // console.log('da loc', filteredProducts)
             setListProd(filteredProducts)
         } catch (err) {
-            console.log('Error at HandleGetProductById', err)
+            // console.log('Error at HandleGetProductById', err)
+            message.error('Error at HandleGetProductById')
         }
     }
     useEffect(() => {
@@ -72,7 +74,7 @@ function ViewCategory() {
             productCategory: [name]
         }
         try {
-            console.log("Submitting product:", product)
+            // console.log("Submitting product:", product)
 
             const response = await axios.post(`${URL_WEB}/product`, product, {
                 headers: {
@@ -80,7 +82,7 @@ function ViewCategory() {
                 }
             })
 
-            console.log('✅ Response from API:', response)
+            // console.log('✅ Response from API:', response)
 
             // Reset form
             setNameProduct('')
@@ -114,12 +116,12 @@ function ViewCategory() {
             await HandleGetProductById()
         }
         catch {
-            console.log('err delete')
+            // console.log('err delete')
         }
     }
 
     const HandleAddDetail = (item) => {
-        console.log('item in view cat', item)
+        // console.log('item in view cat', item)
         navigate(`/admin-home/${item.name}/${item.id}`, {
             state: {
                 id: item.id

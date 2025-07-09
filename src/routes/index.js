@@ -9,6 +9,7 @@ import Home from "../pages/Home"
 import Login from "../pages/Login"
 import Login4Admin from "../pages/Login4Admin"
 import Signin from "../pages/Signin"
+import User from "../pages/User"
 
 export const routes = [
     {
@@ -46,7 +47,6 @@ export const routes = [
                         path: 'admin-home',
                         element: <Admin />
                     },
-
                     {
                         path: 'admin-home/:name',
                         element: <ViewCategory />
@@ -54,6 +54,10 @@ export const routes = [
                     {
                         path: 'admin-home/:name/:id',
                         element: <AddDetail />
+                    },
+                    {
+                        path: '/user',
+                        element: <User />
                     }
                 ]
             }

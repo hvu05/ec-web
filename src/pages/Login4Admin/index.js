@@ -22,7 +22,7 @@ function Login4Admin() {
                 role: 'ADMIN'
             })
             message.success('Admin login successful')
-            console.log('Token when login', response.data.data.accessToken)
+            // console.log('Token when login', response.data.data.accessToken)
             localStorage.setItem('token', response.data.data.accessToken)
             navigate('/admin-home')
         }

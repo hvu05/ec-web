@@ -3,11 +3,12 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { URL_WEB } from "../../constants"
 import { useEffect, useState } from "react"
 import "./AddDetail.scss"
+import { message } from "antd"
 
 function AddDetail() {
     const location = useLocation()
     const id = location.state.id || null
-    console.log('ID', id)
+    // console.log('ID', id)
     const [listProd, setListProd] = useState(null)
     const token = localStorage.getItem('token')
 
@@ -31,11 +32,12 @@ function AddDetail() {
             // console.log('Response in get', response.data.data)
             setListProd(response.data.data.productDetail)
         } catch {
-            console.log('err at get')
+            // console.log('err at get')
+            message.error('err at addDetail handlegetDetailById')
         }
     }
     const HandleAddDetail = async (e) => {
-        console.log('id in func handle add', id)
+        // console.log('id in func handle add', id)
         e.preventDefault()
         try {
             const response = await axios.post(`${URL_WEB}/product/${id}/detail`, {
@@ -48,13 +50,14 @@ function AddDetail() {
                 }
             })
             setListProd(response.data.data.productDetail)
-            console.log('OK', response.data.data)
+            // console.log('OK', response.data.data)
             setInfo('')
             setPrice('')
             setQuantity('')
 
         } catch {
-            console.log('err at post detail')
+            // console.log('err at post detail')
+            message.error('err at post detail - component AddDetail')
         }
     }
     const HandleDeleteDetail = async (idDetail) => {
@@ -67,7 +70,8 @@ function AddDetail() {
             // console.log('delete response', response)
             await HandleGetDetailById()
         } catch {
-            console.log('err at delete')
+            // console.log('err at delete')
+            message.error('err at delete detail - component AddDetail')
         }
     }
     return (

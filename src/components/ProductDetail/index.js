@@ -15,7 +15,7 @@ function ProductDetail() {
     const product = location.state || {}
     const prd = product.products || {}
     const [selectedDetail, setSelectedDetail] = useState(prd.productDetail?.[0] || null)
-    const [quantity, setQuantity] = useState(0)
+    const [quantity, setQuantity] = useState(1)
 
     const name = prd.name || "Product Name"
     const description = prd.description || "No description available"
@@ -39,7 +39,7 @@ function ProductDetail() {
                     Authorization: `Bearer ${token}`
                 }
             })
-            console.log('Response in Add cart', response)
+            // console.log('Response in Add cart', response)
         }
         catch(err) {
             if (err.response?.status === 401) {
@@ -83,9 +83,9 @@ function ProductDetail() {
                         />
                     </div>
                     <div className="product-detail__info-container">
-                        <p><strong>Mô tả:</strong> {description}</p>
-                        <p><strong>Đánh giá:</strong> ⭐ {averageRate}/5</p>
-                        <h3 className="product-detail__subheading">Chọn phiên bản</h3>
+                        <p><strong>Description:</strong> {description}</p>
+                        <p><strong>Rate:</strong> ⭐ {averageRate}/5</p>
+                        <h3 className="product-detail__subheading">Variant</h3>
                         <div className="product-detail__variants">
                             {productDetail.map((detail) => (
                                 <button
@@ -99,9 +99,9 @@ function ProductDetail() {
                         </div>
                         {selectedDetail && (
                             <div className="product-detail__price">
-                                <p><strong>Giá:</strong> ${selectedDetail.price}</p>
-                                <p><strong>Số lượng còn lại:</strong> {selectedDetail.quantity}</p>
-                                <label for='quantity'>Số lượng mua</label>
+                                <p><strong>Price:</strong> ${selectedDetail.price}</p>
+                                <p><strong>Remaining Quantity:</strong> {selectedDetail.quantity}</p>
+                                <label for='quantity'>Purchase Quantity</label>
                                 <input type="number" id="quantity" min='1' max={selectedDetail.quantity} value={quantity} onChange={HandleChangeQuantity} />
                             </div>
                         )}
@@ -111,14 +111,14 @@ function ProductDetail() {
                                 onClick={() => HandleAddCart(selectedDetail)}
                                 disabled={!selectedDetail}
                             >
-                                Thêm vào giỏ hàng
+                                Add to cart
                             </button>
                             <button
                                 className="buy-now"
                                 onClick={() => handleBuyNow(selectedDetail)}
                                 disabled={!selectedDetail}
                             >
-                                Mua ngay
+                                Buy now
                             </button>
                         </div>
                     </div>

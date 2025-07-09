@@ -22,7 +22,7 @@ function Home() {
         navigate("/")
         return
     }
-    console.log(product)
+    // console.log(product)
     const HandleShowDetail = (item) => {
         navigate('/detail', { state: { products: item } });
     }
