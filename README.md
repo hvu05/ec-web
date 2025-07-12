@@ -181,6 +181,13 @@ Làm Menu, tạo trang đăng nhập, đăng ký, tạo Fake API với json-serv
 - Chỉnh giỏ hàng (tăng giảm quantity, change info)
 - Sơ bộ về Address
 
+### *d14 -> d16* 10/7 -> 12/7
+- Chức năng Dashborad của người dùng
+
+
 ## Các chức năng còn thiếu
-- Thêm địa chỉ, chỉnh sửa địa chỉ
+- Chi tiêt:
+    + Hiển thị tăng/giảm khi thêm giỏ hàng
+    + Set mặc định cho địa chỉ (chỉ 1 địa chỉ mặc định), hiển thị địa chỉ mặc định
+    + Chỉnh sửa địa chỉ
 - Admin duyệt đơn hàng*

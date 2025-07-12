@@ -1,6 +1,5 @@
 // File Home.js
-import CircularGallery from "../../components/CircularGallery"
-import MenuProduct from "../../components/Menu"
+import MenuProduct from "../../components/User/Menu"
 import useFetchAPIProduct from "../../func/fetchAPI/useFetchAPIProduct"
 import './Home.scss'
 import Skeleton from 'react-loading-skeleton'

@@ -1,10 +1,10 @@
 import { useLocation } from "react-router-dom"
 import { useState } from "react"
 import './ProductDetail.scss'
-import BackButton from "../Back"
+import BackButton from "../../Back"
 import MenuProduct from "../Menu"
-import { increment } from "../../redux/cartSlice"
-import { URL_WEB } from "../../constants"
+import { increment } from "../../../redux/cartSlice"
+import { URL_WEB } from "../../../constants"
 import axios from "axios"
 import { message } from "antd"
 import { useDispatch } from "react-redux"

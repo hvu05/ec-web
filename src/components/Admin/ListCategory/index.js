@@ -1,9 +1,9 @@
 // file: ListCategory
 import { useEffect, useState } from "react"
-import useFetchAPICategory from "../../func/fetchAPI/useFetchAPICategory"
+import useFetchAPICategory from "../../../func/fetchAPI/useFetchAPICategory"
 import './ListCategory.scss'
 import axios from "axios"
-import { URL_WEB } from "../../constants"
+import { URL_WEB } from "../../../constants"
 import EditCategory from "../EditCategory"
 import { useNavigate } from "react-router-dom"
 

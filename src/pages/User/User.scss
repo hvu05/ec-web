@@ -1,0 +1,50 @@
+@import "../../style/abstracts/variables";
+@import "../../style/abstracts/mixins";
+.user {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+.user__dash {
+  display: flex;
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
+  align-items: center; /* canh giữa theo chiều dọc */
+  justify-content: center; /* canh giữa theo chiều ngang */
+  @include fade-in-up(0.6s, ease-out);
+  transition: all 0.3s ease;
+  padding: 20px 0;
+}
+.user__table {
+  @include fade-in-up(0.6s, ease-out);
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center; // căn giữa ngang
+  
+  table {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+
+    th {
+      border-bottom: 3px solid #999999;
+    }
+    th, td {
+      padding: 10px 10px;
+    }
+  }
+  transition: all 0.3s ease;
+  tr {
+    @include fade-in-up(0.6s, ease-out);
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: linear-gradient(
+        135deg,
+        rgba($primary-color, 0.05),
+        rgba($accent-color, 0.05)
+      );
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
