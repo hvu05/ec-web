@@ -1,7 +1,7 @@
 // File Cart.js
 import axios from 'axios'
 import BackButton from '../../components/Back'
-import MenuProduct from '../../components/Menu'
+import MenuProduct from '../../components/User/Menu'
 import useFetchAPIcart from '../../func/fetchAPI/useFetchAPICart'
 import './Cart.scss'
 import { URL_WEB } from '../../constants'

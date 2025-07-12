@@ -1,7 +1,7 @@
 import axios from "axios"
-import { URL_WEB } from "../../constants"
+import { URL_WEB } from "../../../constants"
 import { useEffect, useState } from "react"
-import UploadImage from "../UploadImage"
+import UploadImage from "../../UploadImage"
 import { useLocation, useNavigate } from "react-router-dom"
 import './ViewCategory.scss'
 import { message } from "antd"

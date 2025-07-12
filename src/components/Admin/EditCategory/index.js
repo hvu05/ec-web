@@ -1,9 +1,9 @@
 //file: EditCategory.js
 import { useEffect, useState } from "react";
 import './EditCategory.scss';
-import UploadImage from '../../components/UploadImage';
+import UploadImage from '../../UploadImage';
 import axios from "axios";
-import { URL_WEB } from "../../constants";
+import { URL_WEB } from "../../../constants";
 import { message } from "antd";
 
 function EditCategory(props) {

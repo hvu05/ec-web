@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useLocation, useNavigate } from "react-router-dom"
-import { URL_WEB } from "../../constants"
+import { URL_WEB } from "../../../constants"
 import { useEffect, useState } from "react"
 import "./AddDetail.scss"
 import { message } from "antd"

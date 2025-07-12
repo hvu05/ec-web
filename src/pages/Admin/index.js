@@ -3,7 +3,7 @@ import { useState } from "react"
 import { URL_WEB } from "../../constants"
 import { useNavigate } from "react-router-dom"
 import { message } from "antd"
-import ListCategory from "../../components/ListCategory"
+import ListCategory from "../../components/Admin/ListCategory"
 import './Admin.scss'
 
 function Admin() {

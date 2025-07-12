@@ -1,0 +1,20 @@
+@import '../../../../style/abstracts/variables.scss';
+.data-address-selects {
+
+    select {
+        padding: 10px 10px;
+        border-radius: 10px;
+        margin: 10px;
+        width: 300px;
+        // color: $text-color;
+        &::placeholder{
+            font-style: italic;
+        }
+    }
+    .label {
+        font-size: 16px;
+        color: $primary-color;
+        font-weight: bold;
+    }
+
+}
