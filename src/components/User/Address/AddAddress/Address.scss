@@ -1,5 +1,5 @@
-@import "../../../style/abstracts/mixins";
-@import "../../../style/abstracts/variables";
+@import "../../../../style/abstracts/mixins";
+@import "../../../../style/abstracts/variables";
 
 .address-container {
   display: flex;
@@ -11,28 +11,7 @@
 }
 
 // Add Address Button
-.add-address-btn {
-  padding: 12px 24px;
-  background: linear-gradient(135deg, $accent-color, darken($accent-color, 10%));
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  font-family: $font-main;
-  position: absolute;
-  top: 80px;
-  left: 10px;
-  @include smooth(0.3s);
-  @include fade-in-up(0.8s, ease-out);
 
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba($accent-color, 0.3);
-    background: linear-gradient(135deg, darken($accent-color, 5%), darken($accent-color, 15%));
-  }
-}
 
 // Modal Overlay
 .modal-overlay {

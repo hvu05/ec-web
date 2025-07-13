@@ -1,0 +1,15 @@
+@import "../../../../style/abstracts/variables";
+@import "../../../../style/abstracts/mixins";
+
+.put-address-form {
+  z-index: 10000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4); // lớp nền mờ
+  display: flex;
+  align-items: center; // Căn giữa theo chiều dọc
+  justify-content: center; // Căn giữa theo chiều ngang
+}

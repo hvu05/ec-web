@@ -7,11 +7,14 @@ import './Cart.scss'
 import { URL_WEB } from '../../constants'
 import { useEffect, useState } from 'react'
 import { message } from 'antd'
+import { Checkbox } from 'antd'
 
 function Cart() {
     // const [refreshFlag, setRefreshFlag] = useState(false)
     const { cart, loading } = useFetchAPIcart()
     const [cartList, setCartList] = useState(cart)
+    const [selectedItems, setSelectedItems] = useState([])
+    const [warrantyOptions, setWarrantyOptions] = useState({})
 
     const token = localStorage.getItem('token')
     // console.log('cart', cartList)
@@ -110,132 +113,107 @@ function Cart() {
         }
         message.info('Change info feature is under development')
     }
+    // Chọn/bỏ chọn sản phẩm
+    const handleSelectItem = (id) => {
+        setSelectedItems((prev) =>
+            prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+        )
+    }
+    // Chọn gói bảo hành
+    const handleWarrantyChange = (id, value) => {
+        setWarrantyOptions((prev) => ({ ...prev, [id]: value }))
+    }
     return (
-        <div>
+        <>
             <MenuProduct />
-            <div className="cart-page">
-                <BackButton />
-
-                <div className="cart-page__container">
-                    <div className="cart-page__header">
-                        <h1>Shopping Cart</h1>
-                        <p>Manage and checkout the products you've selected</p>
-                    </div>
-
-                    <div className="cart-page__table-container">
-                        <table className="cart-page__table">
-                            <thead>
-                                <tr>
-                                    <th>IMAGE</th>
-                                    <th>PRODUCT</th>
-                                    <th>DETAILS</th>
-                                    <th>PRICE</th>
-                                    <th>QUANTITY</th>
-                                    <th>TOTAL</th>
-                                    <th>REMOVE</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {cartList && cartList.length > 0 ? (
-                                    cartList.map((item, index) => (
-                                        <tr key={index}>
-                                            <td>
-                                                <img
-                                                    src={item.item.imageUrl}
-                                                    className="cart-page__image"
-                                                    alt={item.item.name}
-                                                />
-                                            </td>
-                                            <td>
-                                                <div className="cart-page__product-name">
-                                                    {item.item.name}
-                                                </div>
-                                            </td>
-
-
-                                            <td>
-                                                <select
-                                                    className="cart-page__product-detail"
-                                                    onChange={(e) => HandlePutInfo(e.target.value, item)}
-                                                    value={item.detail.info}
+            <div className="cart-layout">
+                <div className="cart-main">
+                    <div className="cart-left">
+                        {cartList && cartList.length > 0 ? (
+                            cartList.map((item, index) => (
+                                <div className="cart-card" key={index}>
+                                    <div className="cart-card__select">
+                                        <Checkbox
+                                            checked={selectedItems.includes(item.detail.id)}
+                                            onChange={() => handleSelectItem(item.detail.id)}
+                                        />
+                                    </div>
+                                    <div className="cart-card__img">
+                                        <img src={item.item.imageUrl} alt={item.item.name} />
+                                    </div>
+                                    <div className="cart-card__info">
+                                        <div className="cart-card__name">{item.item.name}</div>
+                                        <div className="cart-card__color">
+                                            <span>Color:</span>
+                                            <select
+                                                value={item.detail.info}
+                                                onChange={(e) => HandlePutInfo(e.target.value, item)}
+                                            >
+                                                {item.item.productDetail && item.item.productDetail.map((detail) => (
+                                                    <option key={detail.id}>{detail.info}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                        {/* <div className="cart-card__warranty">
+                                            <span>Choose warranty package</span>
+                                            <div>
+                                                <Checkbox
+                                                    checked={warrantyOptions[item.detail.id] === 'lifetime'}
+                                                    onChange={() => handleWarrantyChange(item.detail.id, warrantyOptions[item.detail.id] === 'lifetime' ? null : 'lifetime')}
                                                 >
-                                                    {item.item.productDetail && item.item.productDetail.map((detail) => (
-                                                        <option key={detail.id}>{detail.info}</option>
-                                                    ))}
-                                                </select>
-                                            </td>
-                                            <td className="cart-page__price">
-                                                ${item.detail.price.toLocaleString('en-US')}
-                                            </td>
-                                            <td>
-                                                <div className="cart-page__quantity-control">
-                                                    <input
-                                                        className="qty-input"
-                                                        value={item.num}
-                                                        max={item.detail.quantity}
-                                                        type='number'
-                                                        onChange={(e) => HandlePutInfo(item.detail.info, item, e.target.value)}
-                                                    />
-                                                </div>
-                                            </td>
-                                            <td className="cart-page__total-price">
-                                                ${(item.detail.price * item.num).toLocaleString('en-US')}
-                                            </td>
-                                            <td>
-                                                <button
-                                                    className="cart-page__remove-btn"
-                                                    onClick={() => HandleDeleteProductInCart(item)}
-                                                    title="Remove product"
-                                                >
-                                                    ✕
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    ))
-                                ) : (
-                                    <tr>
-                                        <td colSpan={7} className="cart-page__empty-cart">
-                                            <div className="empty-icon"></div>
-                                            <div className="empty-text">Your cart is empty</div>
-                                            <div className="empty-subtext">Add products to your cart to start shopping</div>
-                                        </td>
-                                    </tr>
-                                )}
-                            </tbody>
-                        </table>
+                                                    Lifetime warranty privilege +{item.detail.warrantyPrice ? item.detail.warrantyPrice.toLocaleString('en-US') : '0'} đ
+                                                </Checkbox>
+                                            </div>
+                                        </div> */}
+                                    </div>
+                                    <div className="cart-card__price">{item.detail.price.toLocaleString('en-US')} đ</div>
+                                    <div className="cart-card__qty">
+                                        <input
+                                            className="qty-input"
+                                            value={item.num}
+                                            max={item.detail.quantity}
+                                            type='number'
+                                            onChange={(e) => HandlePutInfo(item.detail.info, item, e.target.value)}
+                                        />
+                                    </div>
+                                    <div className="cart-card__total">{(item.detail.price * item.num).toLocaleString('en-US')} đ</div>
+                                    <div className="cart-card__remove">
+                                        <button
+                                            className="cart-page__remove-btn"
+                                            onClick={() => HandleDeleteProductInCart(item)}
+                                            title="Remove product"
+                                        >
+                                            ✕
+                                        </button>
+                                    </div>
+                                </div>
+                            ))
+                        ) : (
+                            <div className="cart-empty">
+                                <div className="empty-icon"></div>
+                                <div className="empty-text">Your cart is empty</div>
+                                <div className="empty-subtext">Add products to your cart to start shopping</div>
+                            </div>
+                        )}
                     </div>
-
-                    {cartList && (
-                        <div className="cart-page__summary">
+                    <div className="cart-right">
+                        <div className="cart-summary">
                             <div className="summary-header">
                                 <h3>Order Summary</h3>
                             </div>
-
                             <div className="summary-item">
-                                <span className="label">Number of products:</span>
-                                <span className="value">{cartList.length}</span>
-                            </div>
-
-                            <div className="summary-item">
-                                <span className="label">Total quantity:</span>
-                                <span className="value">
-                                    {cartList.reduce((acc, item) => acc + item.num, 0)}
-                                </span>
-                            </div>
-
-                            <div className="summary-item">
-                                <span className="label">Total amount:</span>
-                                <span className="value">${calculateTotal().toLocaleString('en-US')}</span>
+                                <span className="label">Total</span>
+                                <span className="value">{cartList ? cartList.reduce((acc, item) => acc + item.detail.price * item.num, 0).toLocaleString('en-US') : 0} đ</span>
                             </div>
 
                             <button className="checkout-btn" onClick={handleCheckout} disabled={!cartList || cartList.length === 0}>
-                                Checkout Now
+                                Confirm order
                             </button>
                         </div>
-                    )}
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 

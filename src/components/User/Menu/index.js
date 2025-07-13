@@ -17,13 +17,15 @@ function MenuProduct() {
     return (
         <>
             <Row className='menu'>
-                <Col span={4} onClick={() => {navigate('/')}}>
-                    <i className="fa-solid fa-right-from-bracket menu__icon--logout"></i>
-                </Col>
-                <Col span={4}>
-                    <div className='menu__logo' onClick={() => {navigate('/home')}}>
-                        <img src='/logo.png' alt='logo' />
+                <Col span={4}></Col>
+                <Col span={2}>
+                    <div className='menu__logo' onClick={() => { navigate('/home') }}>
+                        <img src='https://t4.ftcdn.net/jpg/03/31/93/85/360_F_331938599_nmkc39B7E74s1G5P01b0YCJ6x0MNMqJz.jpg' alt='logo' />
                     </div>
+                </Col>
+                <Col span={2}>
+                    {/* <i className="fa-solid fa-right-from-bracket menu__icon--logout"></i> */}
+                    <div className='menu__danhmuc'>Category</div>
                 </Col>
                 <Col span={8}>
                     <div className='menu__search'>
@@ -34,19 +36,28 @@ function MenuProduct() {
                         />
                     </div>
                 </Col>
-                <Col span={3}>
-                    <div className='menu__cart' onClick={() => {navigate("/cart")}}>
+                <Col span={2}>
+                    <div className='menu__cart' onClick={() => { navigate("/cart") }}>
                         <i className="fa-solid fa-cart-shopping"></i>
-                        <div className='menu__cart-text'>Giỏ hàng {cartCount}</div>
+                        <div className='menu__cart-text'>{cartCount}</div>
                     </div>
                 </Col>
-                <Col span={3}>
-                    <div className='menu__account' onClick={() => {navigate('/user')}}>
-                        <i className="fa-solid fa-circle-user"></i>
-                        <div className='menu__account-text'>{token ? "Đã đăng nhập" : "Chưa đăng nhập"}</div>
+                <Col span={2}>
+                    <div className='menu__account'>
+                        <div class="dropdown">
+                            <button><i class="fa-solid fa-user"></i></button>
+                            <div class="content">
+                                <a onClick={() => { navigate('/user', {state: {mess: 'information'}}) }}><i class="fa-solid fa-user" style={{ paddingRight: '10px' }}></i> Personal Information</a>
+                                <a onClick={() => { navigate('/user', {state: {mess: 'orders'}}) }}><i class="fa-solid fa-truck-fast" style={{ paddingRight: '10px' }}></i> My Orders</a>
+                                <a onClick={() => { navigate('/user', {state: {mess: 'addresses'}}) }}><i class="fa-solid fa-location-dot" style={{ paddingRight: '10px' }}></i> Shipping Addresses</a>
+                                <a onClick={() => { navigate('/')}}><i class="fa-solid fa-right-from-bracket" style={{ paddingRight: '10px' }}></i>  Log Out</a>
+                            </div>
+                        </div>
                     </div>
                 </Col>
+                <Col span={4}></Col>
             </Row>
+
 
         </>
     )

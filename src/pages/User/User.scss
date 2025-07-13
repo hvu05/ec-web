@@ -1,50 +1,84 @@
 @import "../../style/abstracts/variables";
 @import "../../style/abstracts/mixins";
-.user {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-.user__dash {
+
+.user-page {
   display: flex;
-  font-size: 40px;
-  font-weight: bold;
-  color: white;
-  align-items: center; /* canh giữa theo chiều dọc */
-  justify-content: center; /* canh giữa theo chiều ngang */
-  @include fade-in-up(0.6s, ease-out);
-  transition: all 0.3s ease;
-  padding: 20px 0;
+  gap: 24px;
+  padding: 32px;
 }
-.user__table {
-  @include fade-in-up(0.6s, ease-out);
-  transition: all 0.3s ease;
-  display: flex;
-  justify-content: center; // căn giữa ngang
-  
+.sidebar {
+  width: 280px;
+  // background: #fff;
+  color: black;
+}
+.main-content {
+  flex: 1;
+  background: #fff;
+  margin: 20px 20px 20px -10px;
+  border-radius: 15px;
+  h2 {
+    justify-content: center;
+    display: flex;
+    padding: 20px 0;
+    color: black;
+  }
   table {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
 
-    th {
-      border-bottom: 3px solid #999999;
-    }
-    th, td {
+    td {
+      width: 200px;
       padding: 10px 10px;
+      border-bottom: 2px solid $gray-light;
     }
-  }
-  transition: all 0.3s ease;
-  tr {
-    @include fade-in-up(0.6s, ease-out);
-    transition: all 0.3s ease;
 
-    &:hover {
-      background: linear-gradient(
-        135deg,
-        rgba($primary-color, 0.05),
-        rgba($accent-color, 0.05)
-      );
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    .field {
+      display: flex;
+      color: black;
+      justify-content: flex-end;
     }
   }
+  button {
+    display: flex;
+    justify-content: center;
+  }
+}
+.profile-box {
+  margin: 20px 20px;
+  background: #fff;
+  padding: 20px 20px;
+  border-radius: 15px;
+}
+.menu-side {
+  margin: 20px 20px;
+  background: #fff;
+  padding: 20px 20px;
+  border-radius: 15px;
+  div {
+    cursor: pointer;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      color: $primary-color;
+      background: rgba(0, 123, 255, 0.1);
+    }
+    
+    &.active {
+      color: $primary-color;
+      background: rgba(0, 123, 255, 0.1);
+      font-weight: 600;
+    }
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.btn {
+  margin: 20px auto;
+  padding: 10px 20px; // nếu muốn thêm padding
+  display: block; // để margin auto có tác dụng căn giữa
 }

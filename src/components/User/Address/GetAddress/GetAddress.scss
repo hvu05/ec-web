@@ -2,52 +2,72 @@
 @import "../../../../style/abstracts/mixins";
 
 .get-address {
-    font-size: 40px;
-    display: flex;
-    justify-content: center;
-    font-weight: bold;
-    color: white;
-    padding: 20px 0;
-}
-.get-address-table-container {
-  @include fade-in-up(0.6s, ease-out);
-  transition: all 0.3s ease;
   display: flex;
-  justify-content: center;
-  table {
-    background: white;
-    // border: 1px solid #999999;
-    border-radius: 10px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  }
-  th {
-    padding: 20px 20px 20px 20px;
-    border-bottom: 3px solid #999999;
-    text-transform: uppercase;
-  }
-  td {
-    padding: 10px 20px 10px 20px;
-  }
-  th,
-  td {
-    justify-content: center;
-    text-align: center;
-  }
-  td:nth-child(3) {
-    text-align: left;
-  }
-  tr {
-    @include fade-in-up(0.6s, ease-out);
-    transition: all 0.3s ease;
+  align-items: center;
+  padding: 12px;
+  box-shadow: $shadow;
+  border-radius: 8px;
+  margin-bottom: 16px;
 
-    &:hover {
-      background: linear-gradient(
-        135deg,
-        rgba($primary-color, 0.05),
-        rgba($accent-color, 0.05)
-      );
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  > div {
+    margin-right: 16px;
+  }
+
+  // Icon
+  > div:first-child {
+    background-color: $background-red;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $primary-color;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  // Thông tin người nhận
+  > div:nth-child(2) {
+    flex: 1;
+
+    div:first-child {
+      font-weight: 600;
+      font-size: 16px;
     }
+
+    div:last-child {
+      font-size: 14px;
+      color: #555;
+      margin-top: 4px;
+    }
+  }
+
+  // Phần default + nút edit
+  > div:nth-child(3) {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .default-address {
+    background-color: $background-red;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+  }
+
+  button {
+    padding: 6px 12px;
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
   }
 }

@@ -2,95 +2,119 @@
 @import "../../../style/abstracts/mixins";
 
 .menu {
-  background-color: $white;
-  padding: $spacing-sm $spacing-lg;
-  box-shadow: $shadow;
-  align-items: center;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+  background-color: $primary-color;
 
-  .menu__icon--logout {
-    font-size: 1.2rem;
-    color: $text-color;
+  .ant-col {
+    display: flex;
+    align-items: center; // ⬅ căn giữa theo chiều dọc
+    justify-content: center; // ⬅ căn giữa theo chiều ngang (nếu muốn)
+  }
+
+  &__logo img {
+    width: 60px;
     cursor: pointer;
-    @include smooth();
-
-    &:hover {
-      color: $accent-color;
-    }
+    border-radius: 20px;
   }
 
-  .menu__logo {
-    cursor: pointer;
-    text-align: center;
-
-    img {
-      height: 40px;
-      @include smooth();
-
-      &:hover {
-        transform: scale(1.05);
-      }
-    }
+  &__search input {
+    // width: 100%;
+    width: 300px;
+    height: 40px;
+    padding: 6px 12px;
+    border-radius: 30px;
+    border: 1px solid #ccc;
   }
 
-  .menu__search {
-    input {
-      width: 100%;
-      padding: 8px 12px;
-      border-radius: 8px;
-      border: 1px solid lighten($primary-color, 30%);
-      font-size: 1rem;
-      @include smooth();
-
-      &:focus {
-        outline: none;
-        border-color: $primary-color;
-        box-shadow: 0 0 0 2px rgba($primary-color, 0.1);
-      }
-    }
-  }
-
-  .menu__cart,
-  .menu__account {
+  &__cart {
     display: flex;
     align-items: center;
     gap: 8px;
     cursor: pointer;
-    justify-content: center;
-    @include smooth();
-
-    i {
-      font-size: 1.2rem;
-      color: $primary-color;
-    }
-
-    &:hover {
-      transform: translateY(-2px);
-    }
+    color: white;
+    background-color: black;
+    height: 40px;
+    padding: 0 20px;
+    border-radius: 20px;
   }
 
-  .menu__cart-text,
-  .menu__account-text {
-    font-size: 0.95rem;
-    color: $text-color;
+  &__cart-text {
+    font-weight: bold;
+  }
+
+  // &__account {
+  //   font-size: 20px;
+  //   cursor: pointer;
+  //   background-color: #fecab5;
+  //   height: 40px;
+  //   display: flex;
+  //   align-items: center;
+  //   padding: 0 12px;
+  //   border-radius: 20px;
+  // }
+  &__danhmuc {
+    background-color: #6a151b;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    color: white;
+    padding: 0 30px;
+    border-radius: 30px;
   }
 }
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
 
-// Responsive
-@include respond(sm) {
-  .menu {
-    padding: $spacing-sm;
+.dropdown button {
+  padding: 10px 15px;
+  background-color: #6a151b;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+}
 
-    .menu__logo img {
-      height: 32px;
-    }
+// .dropdown button:hover {
+//   background-color: #1e3e7e;
+// }
 
-    .menu__search input {
-      font-size: 0.9rem;
-    }
+.content {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  background-color: white;
+  width: 200px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  z-index: 1;
+}
 
-    .menu__cart-text,
-    .menu__account-text {
-      display: none;
-    }
-  }
+.dropdown:hover .content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.content a {
+  color: #333;
+  padding: 10px 14px;
+  text-decoration: none;
+  display: block;
+  border-bottom: 1px solid #eee;
+}
+
+.content a:last-child {
+  border-bottom: none;
+}
+
+.content a:hover {
+  background-color: #f0f0f0;
 }
