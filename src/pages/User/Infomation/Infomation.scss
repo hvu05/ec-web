@@ -1,0 +1,28 @@
+@import '../../../style/abstracts/variables';
+
+.edit-container {
+    display: flex;
+    justify-content: center;
+    align-items: center; // optional, for vertical centering
+    // height: 100vh; // optional, for full viewport height
+    form {
+        input {
+            width: 300px;
+            height: 50px;
+            padding: 10px 10px;
+            // border: none;
+            border-radius: 20px;
+            border: 1px solid $text-color;
+            margin: 10px 10px;
+
+            &:hover{
+            border: 1px solid $text-color;
+            
+            }
+            &:focus {
+                background-color: $gray-light;
+                border: 1px solid $text-color;
+            }
+        }
+    }
+}

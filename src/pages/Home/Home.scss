@@ -5,7 +5,12 @@
   --starColor: #f67034;
   --sectionBack: #f7f6f9;
 }
-
+body {
+  background: #F3F4F6;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
 * {
   margin: 0;
   padding: 0;
@@ -16,17 +21,15 @@
 // Home page specific background
 .home-page {
   min-height: 100vh;
-  // background: url('https://i.pinimg.com/736x/8e/f3/f7/8ef3f7582ad5f99b05dc8a0e9e4af09a.jpg') no-repeat center center fixed;
   background-size: cover;
-  padding: 20px 0;
-  // background: #00827F;
+  background: #F3F4F6;
 }
 
 // Override body background for home page
 body.home-background {
-  // background: url('https://i.pinimg.com/736x/8e/f3/f7/8ef3f7582ad5f99b05dc8a0e9e4af09a.jpg') no-repeat center center fixed;
   background-size: cover;
   min-height: 100vh;
+  background: #F3F4F6;
 }
 
 .container {
@@ -38,11 +41,10 @@ body.home-background {
   margin: 0 auto;
   padding: 20px;
   background: rgba(255, 255, 255, 0.1);
-  // background-color: #1b2741;
   backdrop-filter: blur(10px);
   border-radius: 15px;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  // background-color: #1b2741;
+  background: #F3F4F6;
   @include fade-in(0.6s, ease-in);
 }
 
@@ -57,7 +59,7 @@ body.home-background {
   color: var(--textColor);
 }
 .intro {
-  background: url('https://cdn.photoroom.com/v2/image-cache?path=gs://background-7ef44.appspot.com/backgrounds_v3/ocean/38_ocean.jpg') no-repeat center center;
+  // background: url('https://www.lightstalking.com/wp-content/uploads/black_and_1534817744-1024x475.jpeg') no-repeat center center;
   background-size: cover;
   height: 700px;
   display: flex;

@@ -1,16 +1,32 @@
 import { useEffect, useState } from "react"
-import BackButton from "../../components/Back"
 import axios from "axios"
 import { URL_WEB } from "../../constants"
-import Address from "../../components/User/Address"
-import GetAddress from "../../components/User/Address/GetAddress"
+
 import './User.scss'
 import MenuProduct from "../../components/User/Menu"
+import { useLocation, useNavigate } from "react-router-dom"
+import '../../style/components/_button.scss';
+import Information from "./Infomation"
+import MyOrders from "./MyOrders"
+// import PaidServices from "./PaidServices"
+import LoyaltyProgram from "./LoyaltyProgram"
+import WarrantyInfo from "./WarrantyInfo"
+import AddressUser from "./Address-User"
 
 function User() {
     const [user, setUser] = useState(null)
     const token = localStorage.getItem('token')
-    // const [showAddress, setShowAddress] = useState(false)
+    const navigate = useNavigate()
+    const location = useLocation()
+    const [mes, setMes] = useState('')
+
+    const [currentComponent, setCurrentComponent] = useState(location.state && location.state.mess)
+
+    useEffect(() => {
+        if (location.state && location.state.mess) {
+            setMes(location.state.mess);
+        }
+    })
 
     useEffect(() => {
         const getUser = async () => {
@@ -18,73 +34,90 @@ function User() {
                 const response = await axios.get(`${URL_WEB}/user/me`, {
                     headers: { Authorization: `Bearer ${token}` }
                 })
-                console.log('res user', response)
+                // console.log('res user', response)
                 setUser(response.data.data)
             } catch {
                 console.log('err at User')
             }
         }
         getUser()
-    }, [])
-    const HandleShowProvince = async () => {
-        try {
-            const response = await axios.get(`${URL_WEB}/address/province`, {
-                headers: { Authorization: `Bearer ${token}` }
-            })
-            console.log('res in show privince', response)
-        } catch {
-            console.log('error res in show privince')
+    }, [mes])
 
+    const renderComponent = () => {
+        console.log('currentComponent', currentComponent)
+
+        switch (currentComponent) {
+            case 'information':
+                return user && <Information users={user} />
+                // return user && navigate('/infomation-user', { state: { users: user } })
+            case 'orders':
+                return <MyOrders />
+            // case 'services':
+            //     return <PaidServices />
+            case 'loyalty':
+                return <LoyaltyProgram />
+            case 'addresses':
+                return user && <AddressUser userId={user.id} />
+            case 'warranty':
+                return <WarrantyInfo />
+            default:
+                return user && <Information users={user} />
         }
     }
+
     return (
         <div className="user">
             <MenuProduct />
-            {/* <BackButton /> */}
-            <div className="user__info-container">
-                <div className="user__dash">User Dashboard</div>
-                <div className="user__table">
-                    {user && (
-                        <table className="user__info">
-                            <thead>
-                                <tr>
-                                    <th>Field</th>
-                                    <th>Value</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>ID</td>
-                                    <td>{user.id}</td>
-                                </tr>
-                                <tr>
-                                    <td>Username</td>
-                                    <td>{user.username}</td>
-                                </tr>
-                                <tr>
-                                    <td>First Name</td>
-                                    <td>{user.firstName}</td>
-                                </tr>
-                                <tr>
-                                    <td>Last Name</td>
-                                    <td>{user.lastName}</td>
-                                </tr>
-                                <tr>
-                                    <td>Role</td>
-                                    <td>{user.role}</td>
-                                </tr>
-                                <tr>
-                                    <td>Date of Birth</td>
-                                    <td>{new Date(user.dob).toLocaleDateString()}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    )}
-                </div>
+            <div className="user-page">
+                <aside className="sidebar">
+                    <div className="menu-side">
+                        <div
+                            className={currentComponent === 'information' ? 'active' : ''}
+                            onClick={() => setCurrentComponent('information')}
+                        >
+                            <i class="fa-solid fa-user" style={{ paddingRight: '10px' }}></i> My Information
+                        </div>
+                        <div
+                            className={currentComponent === 'orders' ? 'active' : ''}
+                            onClick={() => setCurrentComponent('orders')}
+                        >
+                            <i class="fa-solid fa-truck-fast" style={{ paddingRight: '10px' }}></i> My Orders
+                        </div>
+                        <div
+                            className={currentComponent === 'services' ? 'active' : ''}
+                            onClick={() => setCurrentComponent('services')}
+                        >
+                            <i class="fa-solid fa-credit-card" style={{ paddingRight: '10px' }}></i> Paid Services
+                        </div>
+                        <div
+                            className={currentComponent === 'loyalty' ? 'active' : ''}
+                            onClick={() => setCurrentComponent('loyalty')}
+                        >
+                            <i class="fa-solid fa-gift" style={{ paddingRight: '10px' }}></i> Loyalty Program
+                        </div>
+                        <div
+                            className={currentComponent === 'addresses' ? 'active' : ''}
+                            onClick={() => setCurrentComponent('addresses')}
+                        >
+                            <i class="fa-solid fa-location-dot" style={{ paddingRight: '10px' }}></i>Shipping Addresses
+                        </div>
+                        <div
+                            className={currentComponent === 'warranty' ? 'active' : ''}
+                            onClick={() => setCurrentComponent('warranty')}
+                        >
+                            <i class="fa-solid fa-medal" style={{ paddingRight: '10px' }}></i>Warranty Info
+                        </div>
+                        <div onClick={() => navigate('/')}>
+                            <i class="fa-solid fa-right-from-bracket" style={{ paddingRight: '10px' }}></i> Log Out
+                        </div>
+                    </div>
+                </aside>
+
+                <main className="main-content">
+                    {renderComponent()}
+                    {/* {currentComponent === 'information' && <button className="btn btn--primary">Edit Information</button>} */}
+                </main>
             </div>
-            {/* <button onClick={() => {setShowAddress(!showAddress)}}>{showAddress ? 'Close form': 'Open form'}</button> */}
-            {user && <GetAddress userId={user.id} />}
-            {user && <Address userId={user.id} />}
         </div>
     )
 }

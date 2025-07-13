@@ -10,6 +10,8 @@ import Login from "../pages/Login"
 import Login4Admin from "../pages/Login4Admin"
 import Signin from "../pages/Signin"
 import User from "../pages/User"
+import Information from "../pages/User/Infomation"
+import AddressUser from "../pages/User/Address-User"
 
 export const routes = [
     {

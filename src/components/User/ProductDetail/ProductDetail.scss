@@ -1,20 +1,17 @@
 @import "../../../style/abstracts/variables";
 @import "../../../style/abstracts/mixins";
 
-.space {
-  height: $spacing-lg;
-}
-
 .product-detail {
   padding: $spacing-lg;
-  // background-color: $gray-light;
   font-family: $font-main;
+  color: #222; // Tất cả chữ màu đen
 
   &__heading {
     text-align: center;
     font-size: 2rem;
-    color: $primary-color;
+    color: #222; // Đen
     margin-bottom: $spacing-lg;
+    font-weight: 700;
   }
 
   &__container {
@@ -45,18 +42,18 @@
     display: flex;
     flex-direction: column;
     gap: $spacing-sm;
+    color: #222; // Đen
 
-    p {
-      font-size: 1rem;
-      color: $text-color;
-      line-height: 1.5;
+    p, label, strong {
+      color: #222;
     }
   }
 
   &__subheading {
     font-size: 1.2rem;
-    color: $primary-color;
+    color: #222; // Đen
     margin-top: $spacing-md;
+    font-weight: 700;
   }
 
   &__variants {
@@ -67,9 +64,9 @@
 
     .variant-button {
       padding: $spacing-sm $spacing-md;
-      border: 1px solid $primary-color;
+      border: 1.5px solid $primary-color;
       border-radius: 8px;
-      background-color: transparent;
+      background-color: #fff;
       color: $primary-color;
       cursor: pointer;
       font-size: 0.95rem;
@@ -77,29 +74,26 @@
 
       &.selected {
         background-color: $primary-color;
-        color: $white;
+        color: #fff;
       }
 
       &:hover {
         background-color: lighten($primary-color, 15%);
-        color: $white;
+        color: #fff;
       }
     }
   }
 
   &__price {
-    p {
-      margin-bottom: $spacing-sm;
+    p, label {
+      color: #222;
     }
-
     label {
       display: block;
       margin-top: $spacing-sm;
       font-weight: 500;
       font-size: 0.95rem;
-      color: $text-color;
     }
-
     input {
       width: 100px;
       padding: 6px 10px;
@@ -129,12 +123,30 @@
       font-size: 1rem;
       font-weight: 500;
       cursor: pointer;
-      border: none;
+      border: 1.5px solid $primary-color;
       @include smooth();
 
       &.add-to-cart {
+        background-color: #fff;
+        color: $primary-color;
+        border: 1.5px solid $primary-color;
+
+        &:hover {
+          background-color: $primary-color;
+          color: #fff;
+        }
+
+        &:disabled {
+          background-color: lighten($primary-color, 30%);
+          color: #fff;
+          cursor: not-allowed;
+        }
+      }
+
+      &.buy-now {
         background-color: $primary-color;
-        color: $white;
+        color: #fff;
+        border: 1.5px solid $primary-color;
 
         &:hover {
           background-color: darken($primary-color, 8%);
@@ -142,20 +154,7 @@
 
         &:disabled {
           background-color: lighten($primary-color, 30%);
-          cursor: not-allowed;
-        }
-      }
-
-      &.buy-now {
-        background-color: $accent-color;
-        color: $white;
-
-        &:hover {
-          background-color: darken($accent-color, 5%);
-        }
-
-        &:disabled {
-          background-color: lighten($accent-color, 25%);
+          color: #fff;
           cursor: not-allowed;
         }
       }

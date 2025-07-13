@@ -58,21 +58,11 @@ function Home() {
                     </div>
                 </div>
             ) : (
-                // <div className="home__products">
-                //     {product.data && product.data.map((item, index) => (
-                //         <div key={index} className="product-card">
-                //             <img className="product-card__image" src={item.imageUrl} alt={item.name} />
-                //             <h1 className="product-card__name">{item.name}</h1>
-                //             <span className="product-card__detail" onClick={() => HandleShowDetail(item)}>
-                //                 Show detail
-                //             </span>
-                //         </div>
-                //     ))}
-                // </div>
 
                 <div className="container">
                     <div className="header">
                         <h2>Products</h2>
+                        <h1>Filter</h1>
                     </div>
 
                     <div className="products">

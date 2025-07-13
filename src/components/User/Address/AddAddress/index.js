@@ -1,13 +1,16 @@
 // File: Address/index.js
 import React, { useState } from 'react';
 import axios from 'axios';
-import { URL_WEB } from '../../../constants';
+import { URL_WEB } from '../../../../constants';
 import { message } from 'antd';
-import GetAddress from '../../User/Address/GetAddress';
-import DataAddress from '../Address/Data';
+import GetAddress from '../GetAddress';
+import DataAddress from '../Data';
 import './Address.scss'
 
-function Address({ userId }) {
+function Address(props) {
+  const userId = props.userId
+  console.log('idddd', userId)
+
   const token = localStorage.getItem('token');
 
   const [province, setProvince] = useState('');
@@ -23,6 +26,10 @@ function Address({ userId }) {
   const [showAddress, setShowAddress] = useState(false);
   const [showForm, setShowForm] = useState(false);
 
+  //==================================================================
+  const [addAddress, setAddAdddress] = useState(true)
+  // If TRUE -> appear form ADD, If FALSE -> appear form EDIT
+  //==================================================================
   // Handle address selection from child component
   const handleAddressChange = (selectedProvince, selectedDistrict, selectedWard) => {
     setProvince(selectedProvince.name);
@@ -89,24 +96,17 @@ function Address({ userId }) {
   return (
     <div className='address-container'>
       {/* Add Address Button */}
-      <button 
-        className="add-address-btn" 
+      <button
+        className="btn btn--primary"
         onClick={() => setShowForm(true)}
       >
         Add Address
       </button>
-
-      {/* Modal Overlay */}
-      {showForm && (
+      {showForm && addAddress && (
         <div className="modal-overlay" onClick={handleCloseForm}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close-btn" onClick={handleCloseForm}>
-              ×
-            </button>
-            
-            <form onSubmit={handleSubmit} className="address-form">
-              <h2>Add Address</h2>
 
+            <form onSubmit={handleSubmit} className="address-form">
               <div className="form-group">
                 <DataAddress onAddressChange={handleAddressChange} />
               </div>
@@ -114,9 +114,7 @@ function Address({ userId }) {
               <div className="form-group">
                 <h4 className="info">Address Information</h4>
                 <textarea
-                  id="info"
-                  name="info"
-                  value={info}
+                  id="info" name="info" value={info}
                   onChange={(e) => setInfo(e.target.value)}
                   placeholder="Enter detailed address information"
                   required
@@ -171,7 +169,7 @@ function Address({ userId }) {
           </div>
         </div>
       )}
-      {/* Address List */}
+
       {showAddress && (
         <div className="address-list">
           <GetAddress userId={userId} />

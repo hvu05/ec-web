@@ -4,13 +4,14 @@ import { URL_WEB } from "../../../../constants"
 import { message } from "antd"
 import PutAddress from "../PutAddress"
 import './GetAddress.scss'
+import Address from "../AddAddress"
 
 function GetAddress(props) {
     const userId = props.userId
-    // console.log('userId in get-address', userId)
     const token = localStorage.getItem('token')
     const [ListAddress, setListAddress] = useState(null)
     const [editingAddress, setEditingAddress] = useState(null);
+    const [addressId, setAddressId] = useState('')
 
     useEffect(() => {
         const getAddress = async () => {
@@ -31,6 +32,7 @@ function GetAddress(props) {
 
     const HandleEditAddress = (item) => {
         setEditingAddress(item)
+        setAddressId(item.id)
         console.log('item in handle edit address', item)
     }
     return (
@@ -43,45 +45,32 @@ function GetAddress(props) {
              )
             */}
             {ListAddress &&
-                <div className="get-address-table-container">
-                  <table>
-                    <thead>
-                        <tr>
-                            <th>STT</th>
-                            <th>ReceiverName</th>
-                            <th>Infomation for user</th>
-                            <th>Phone</th>
-                            <th>Edit</th>
-                        </tr>
-                    </thead>
+                <div className="get-address-container">
 
-                    <tbody>
-                            {ListAddress.map((item, index) => (
-                                <tr key={index}>
-                                    <td>
-                                        {index + 1}
-                                    </td>
-                                    <td>
-                                        {item.receiverName}
-                                    </td>
-                                    <td>
-                                        {item.info}, {item.ward}, {item.district}, {item.province}
-                                    </td>
-                                    <td>
-                                        {item.phone}
-                                    </td>
-                                    <td>
-                                        <button onClick={() => HandleEditAddress(item)}>Edit</button>
-                                    </td>
-                                </tr>
-                            ))}
-                    </tbody>
-                  </table>
+                    {ListAddress.map(item => (
+                        <div className="get-address">
+                            <div><i className="fa-solid fa-house"></i></div>
+
+                            <div>
+                                <div>{item.receiverName}</div>
+                                <div>{item.info}, {item.ward}</div>
+                            </div>
+
+                            <div>
+                                <span className="default-address">
+                                    {item.default ? 'Default' : 'Not Default'}
+                                </span>
+                                <button onClick={() => HandleEditAddress(item)}>
+                                    Edit
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+
                 </div>
             }
-            
             {editingAddress && (
-                <PutAddress userId={userId} Information={editingAddress} />
+                <PutAddress userId={userId} addressId={addressId} item={editingAddress}/>
             )}
         </>
     )
